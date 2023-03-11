@@ -7,9 +7,11 @@ public class Movement : MonoBehaviour
     [SerializeField] Camera cam = null;
 
     [SerializeField] float topSpeed = 5f;
-    [SerializeField] float acceleration = 10f;
+    [SerializeField] float timeToTopSpeed = 0.25f;
 
     Rigidbody body;
+
+    float acceleration = 10f;
 
     #region Control Inputs
     KeyCode LEFT = KeyCode.A;
