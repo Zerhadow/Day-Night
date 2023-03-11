@@ -41,6 +41,12 @@ public class Camera : MonoBehaviour
         Quaternion yQuaternion = Quaternion.AngleAxis(yRotation, -Vector3.right);
         transform.position = lookPoint.transform.position;
         transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+        
+    }
 
+    public float GetYRotation()
+    {
+        Vector3 euler = transform.localRotation.eulerAngles;
+        return euler.y;
     }
 }
