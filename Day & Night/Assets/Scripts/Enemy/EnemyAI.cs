@@ -84,4 +84,10 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttack() {
         alreadyAttacked = false;
     }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }
