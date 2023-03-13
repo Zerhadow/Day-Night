@@ -5625,6 +5625,11 @@ PrefabInstance:
       propertyPath: jumpDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3410629838289022696, guid: dc31764c63d86f141a3e3c17ecc975cc,
+        type: 3}
+      propertyPath: airResistanceCoefficient
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022697, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_Mass
