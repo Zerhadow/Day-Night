@@ -35,21 +35,22 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (startingSword != null) {
-            AddWeapon(startingSword, WeaponType.Sword);
-            startingSword.SetActive(true);
+        if (testBlunderbuss != null)
+        {
+            AddWeapon(testBlunderbuss, WeaponType.Blunderbus);
+            //testBlunderbuss.SetActive(false);
         }
 
         if (testBow != null)
         {
             AddWeapon(testBow, WeaponType.Crossbow);
-            testBow.SetActive(false);
+            //testBow.SetActive(false);
         }
 
-        if (testBlunderbuss != null)
+        if (startingSword != null)
         {
-            AddWeapon(testBlunderbuss, WeaponType.Blunderbus);
-            testBlunderbuss.SetActive(false);
+            AddWeapon(startingSword, WeaponType.Sword);
+            //startingSword.SetActive(true);
         }
 
         if (testFireball != null)
@@ -59,15 +60,8 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        align();
         if (weaponIndex > -1)
             switchWeap();
-    }
-
-    void align()
-    {
-        transform.position = lookPoint.position;
-        transform.localRotation = cam.GetRotation();
     }
 
     void switchWeap()
@@ -102,16 +96,28 @@ public class WeaponManager : MonoBehaviour
         switching = false;
     }
 
-    public void AddWeapon(GameObject weapon, WeaponType type)
+    public void AddWeapon(GameObject weaponPrefab, WeaponType type)
     {
+        GameObject weapon = Instantiate(weaponPrefab);
+        weapon.transform.SetParent(cam.transform);
+        weapon.transform.localPosition = Vector3.zero;
         int typeIndex = (int)type;
         if (typeIndex > -1 && typeIndex < 4)
         {
             weapons[typeIndex] = weapon;
+            if (weaponIndex != -1)
+                weapons[weaponIndex].SetActive(false);
+            weapon.SetActive(true);
             weaponIndex = typeIndex;
         }
         else if (typeIndex == 4)
+        {
             fireBall = weapon;
             fireBall.SetActive(true);
+        }
+        else
+        {
+            Destroy(weapon);
+        }
     }
 }
