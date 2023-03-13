@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 111371732}
   - component: {fileID: 111371731}
   - component: {fileID: 111371730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ring (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 132853899}
   - component: {fileID: 132853898}
   - component: {fileID: 132853897}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: jumpBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 218767283}
   - component: {fileID: 218767282}
   - component: {fileID: 218767281}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: jumpBox (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 226226454}
   - component: {fileID: 226226453}
   - component: {fileID: 226226452}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,12 +706,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256597899}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &329115407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3410629838289022706, guid: dc31764c63d86f141a3e3c17ecc975cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 3410629838498515453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &330585545 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3493603757967637983, guid: ab7b51d9b6db3754dbeb70af940848c9,
@@ -730,7 +724,7 @@ GameObject:
   - component: {fileID: 379974688}
   - component: {fileID: 379974687}
   - component: {fileID: 379974686}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +821,7 @@ GameObject:
   - component: {fileID: 407111456}
   - component: {fileID: 407111455}
   - component: {fileID: 407111454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1034,7 @@ GameObject:
   - component: {fileID: 419267158}
   - component: {fileID: 419267157}
   - component: {fileID: 419267156}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1137,7 +1131,7 @@ GameObject:
   - component: {fileID: 515660781}
   - component: {fileID: 515660780}
   - component: {fileID: 515660779}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1331,7 +1325,7 @@ GameObject:
   - component: {fileID: 564121240}
   - component: {fileID: 564121239}
   - component: {fileID: 564121238}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1423,7 @@ GameObject:
   - component: {fileID: 569422437}
   - component: {fileID: 569422436}
   - component: {fileID: 569422435}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: underplatform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,7 +1520,7 @@ GameObject:
   - component: {fileID: 580367330}
   - component: {fileID: 580367329}
   - component: {fileID: 580367328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ring (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1623,7 +1617,7 @@ GameObject:
   - component: {fileID: 591734224}
   - component: {fileID: 591734223}
   - component: {fileID: 591734222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1721,7 +1715,7 @@ GameObject:
   - component: {fileID: 639887404}
   - component: {fileID: 639887403}
   - component: {fileID: 639887402}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1901,7 +1895,7 @@ GameObject:
   - component: {fileID: 882099392}
   - component: {fileID: 882099391}
   - component: {fileID: 882099390}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1986,6 +1980,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882099388}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &892542376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2639396419202163169, guid: dc31764c63d86f141a3e3c17ecc975cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3410629838498515453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &892542377 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2154563229851325737, guid: dc31764c63d86f141a3e3c17ecc975cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3410629838498515453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &905404447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +2004,7 @@ GameObject:
   - component: {fileID: 905404451}
   - component: {fileID: 905404450}
   - component: {fileID: 905404449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: underplatform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2192,7 +2198,7 @@ GameObject:
   - component: {fileID: 1004117381}
   - component: {fileID: 1004117380}
   - component: {fileID: 1004117379}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2289,7 +2295,7 @@ GameObject:
   - component: {fileID: 1020492605}
   - component: {fileID: 1020492604}
   - component: {fileID: 1020492603}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: jumpBox (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2392,7 @@ GameObject:
   - component: {fileID: 1026035985}
   - component: {fileID: 1026035984}
   - component: {fileID: 1026035983}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: jumpBox (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2483,7 +2489,7 @@ GameObject:
   - component: {fileID: 1037790403}
   - component: {fileID: 1037790402}
   - component: {fileID: 1037790401}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2580,7 +2586,7 @@ GameObject:
   - component: {fileID: 1065869245}
   - component: {fileID: 1065869244}
   - component: {fileID: 1065869243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2674,7 +2680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082666863}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2756,7 +2762,7 @@ GameObject:
   - component: {fileID: 1130692876}
   - component: {fileID: 1130692875}
   - component: {fileID: 1130692874}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2853,7 +2859,7 @@ GameObject:
   - component: {fileID: 1164421851}
   - component: {fileID: 1164421850}
   - component: {fileID: 1164421849}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ring (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3047,7 +3053,7 @@ GameObject:
   - component: {fileID: 1204743056}
   - component: {fileID: 1204743055}
   - component: {fileID: 1204743054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3145,7 +3151,7 @@ GameObject:
   - component: {fileID: 1229209165}
   - component: {fileID: 1229209164}
   - component: {fileID: 1229209163}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3242,7 +3248,7 @@ GameObject:
   - component: {fileID: 1251812187}
   - component: {fileID: 1251812186}
   - component: {fileID: 1251812185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3339,7 +3345,7 @@ GameObject:
   - component: {fileID: 1302671792}
   - component: {fileID: 1302671791}
   - component: {fileID: 1302671790}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3436,7 +3442,7 @@ GameObject:
   - component: {fileID: 1325219031}
   - component: {fileID: 1325219030}
   - component: {fileID: 1325219029}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3534,7 +3540,7 @@ GameObject:
   - component: {fileID: 1382438472}
   - component: {fileID: 1382438471}
   - component: {fileID: 1382438470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3631,7 +3637,7 @@ GameObject:
   - component: {fileID: 1386928803}
   - component: {fileID: 1386928802}
   - component: {fileID: 1386928801}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3728,7 +3734,7 @@ GameObject:
   - component: {fileID: 1404001422}
   - component: {fileID: 1404001421}
   - component: {fileID: 1404001420}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3825,7 +3831,7 @@ GameObject:
   - component: {fileID: 1404147707}
   - component: {fileID: 1404147706}
   - component: {fileID: 1404147705}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3922,7 +3928,7 @@ GameObject:
   - component: {fileID: 1424875138}
   - component: {fileID: 1424875137}
   - component: {fileID: 1424875136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4019,7 +4025,7 @@ GameObject:
   - component: {fileID: 1511308136}
   - component: {fileID: 1511308135}
   - component: {fileID: 1511308134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4213,7 +4219,7 @@ GameObject:
   - component: {fileID: 1567607098}
   - component: {fileID: 1567607097}
   - component: {fileID: 1567607096}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4310,7 +4316,7 @@ GameObject:
   - component: {fileID: 1577105538}
   - component: {fileID: 1577105537}
   - component: {fileID: 1577105536}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4407,7 +4413,7 @@ GameObject:
   - component: {fileID: 1603662603}
   - component: {fileID: 1603662602}
   - component: {fileID: 1603662601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: stacks (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4504,7 +4510,7 @@ GameObject:
   - component: {fileID: 1771417045}
   - component: {fileID: 1771417044}
   - component: {fileID: 1771417043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4795,7 +4801,7 @@ GameObject:
   - component: {fileID: 1860665907}
   - component: {fileID: 1860665906}
   - component: {fileID: 1860665905}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4892,7 +4898,7 @@ GameObject:
   - component: {fileID: 1879014809}
   - component: {fileID: 1879014808}
   - component: {fileID: 1879014807}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ramp60
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4989,7 +4995,7 @@ GameObject:
   - component: {fileID: 1890191796}
   - component: {fileID: 1890191795}
   - component: {fileID: 1890191794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5086,7 +5092,7 @@ GameObject:
   - component: {fileID: 1895310957}
   - component: {fileID: 1895310956}
   - component: {fileID: 1895310955}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5172,6 +5178,58 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895310953}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1910138462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910138464}
+  - component: {fileID: 1910138463}
+  m_Layer: 0
+  m_Name: Weapon Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1910138463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910138462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff14b5e85139884fa0e8cd14fd2511f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
+  lookPoint: {fileID: 892542377}
+  startingSword: {fileID: 6766614999367543243, guid: 3544047cb0f1e094ba872203bc973c71,
+    type: 3}
+  testBow: {fileID: 1286120515897803906, guid: 85c477f12de9a1e4896d78e07f54ddd0, type: 3}
+  testBlunderbuss: {fileID: 0}
+  testFireball: {fileID: 0}
+  timeToSwitch: 0.05
+--- !u!4 &1910138464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910138462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1916494987
 GameObject:
   m_ObjectHideFlags: 0
@@ -5220,7 +5278,7 @@ GameObject:
   - component: {fileID: 1937176484}
   - component: {fileID: 1937176483}
   - component: {fileID: 1937176482}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: walls (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5317,7 +5375,7 @@ GameObject:
   - component: {fileID: 1954702543}
   - component: {fileID: 1954702542}
   - component: {fileID: 1954702541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5415,7 +5473,7 @@ GameObject:
   - component: {fileID: 2099460484}
   - component: {fileID: 2099460483}
   - component: {fileID: 2099460482}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ring (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5512,7 +5570,7 @@ GameObject:
   - component: {fileID: 2131197967}
   - component: {fileID: 2131197966}
   - component: {fileID: 2131197965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5625,6 +5683,11 @@ PrefabInstance:
       propertyPath: jumpDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3410629838289022696, guid: dc31764c63d86f141a3e3c17ecc975cc,
+        type: 3}
+      propertyPath: airResistanceCoefficient
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022697, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_Mass
@@ -5653,7 +5716,7 @@ PrefabInstance:
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
@@ -5668,17 +5731,17 @@ PrefabInstance:
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
         type: 3}
@@ -5723,7 +5786,7 @@ PrefabInstance:
         type: 3}
       propertyPath: lookPoint
       value: 
-      objectReference: {fileID: 329115407}
+      objectReference: {fileID: 892542376}
     - target: {fileID: 3493603757967637980, guid: ab7b51d9b6db3754dbeb70af940848c9,
         type: 3}
       propertyPath: m_RootOrder
