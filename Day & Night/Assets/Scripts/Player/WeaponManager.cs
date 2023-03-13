@@ -38,19 +38,16 @@ public class WeaponManager : MonoBehaviour
         if (testBlunderbuss != null)
         {
             AddWeapon(testBlunderbuss, WeaponType.Blunderbus);
-            //testBlunderbuss.SetActive(false);
         }
 
         if (testBow != null)
         {
             AddWeapon(testBow, WeaponType.Crossbow);
-            //testBow.SetActive(false);
         }
 
         if (startingSword != null)
         {
             AddWeapon(startingSword, WeaponType.Sword);
-            //startingSword.SetActive(true);
         }
 
         if (testFireball != null)
