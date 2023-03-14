@@ -5212,7 +5212,8 @@ MonoBehaviour:
   startingSword: {fileID: 6766614999367543243, guid: 3544047cb0f1e094ba872203bc973c71,
     type: 3}
   testBow: {fileID: 1286120515897803906, guid: 85c477f12de9a1e4896d78e07f54ddd0, type: 3}
-  testBlunderbuss: {fileID: 0}
+  testBlunderbuss: {fileID: 3437444935818160597, guid: 00161d5c9e8614140a553e505eca0f46,
+    type: 3}
   testFireball: {fileID: 0}
   timeToSwitch: 0.05
 --- !u!4 &1910138464
