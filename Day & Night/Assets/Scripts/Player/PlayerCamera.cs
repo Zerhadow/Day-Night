@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Camera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] GameObject lookPoint;
 
@@ -14,7 +14,7 @@ public class Camera : MonoBehaviour
     // Minimum and maximum look angle
     float yMax = 60f;
     float yMin = -60f;
-    
+
     // Offsets used for camera shake
     private float xOffset = 0f;
     private float yOffset = 0f;
@@ -41,7 +41,7 @@ public class Camera : MonoBehaviour
         Quaternion yQuaternion = Quaternion.AngleAxis(yRotation, -Vector3.right);
         transform.position = lookPoint.transform.position;
         transform.localRotation = originalRotation * xQuaternion * yQuaternion;
-        
+
     }
 
     public float GetYRotation()
