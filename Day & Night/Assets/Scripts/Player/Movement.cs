@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] Camera cam = null;
+    [SerializeField] PlayerCamera cam = null;
     [SerializeField] Transform groundCheck = null;
 
     [SerializeField] float maxVelocity = 5f;
