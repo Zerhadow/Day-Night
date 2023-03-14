@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float timeToMax = 0.25f;
     [SerializeField] float jumpHeight = 1f;
     [SerializeField] float jumpDuration = 0.25f;
+    [SerializeField] float airResistanceCoefficient = 0.5f;
 
     CharacterController controller;
 
@@ -47,12 +48,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
+        move();
+        jump();
     }
 
-    void Move()
+    void move()
     {
+        float currentAcc = grounded ? acceleration : acceleration * airResistanceCoefficient;
+
         Vector3 direction = Vector3.zero;
 
         // Get inputs
@@ -77,13 +80,13 @@ public class Movement : MonoBehaviour
         // Change player's velocity based off inputs
         if (direction == Vector3.zero && velocity2.magnitude > 0)
         {
-            velocity2 += velocity2.normalized * -acceleration * Time.deltaTime;
+            velocity2 += velocity2.normalized * -currentAcc * Time.deltaTime;
             if (velocity2.magnitude < 0.005)
                 velocity2 = Vector3.zero;
         }
         else
         {
-            velocity2 += direction.normalized * acceleration * Time.deltaTime;
+            velocity2 += direction.normalized * currentAcc * Time.deltaTime;
             if (velocity2.magnitude > maxVelocity)
                 velocity2 = velocity2.normalized*maxVelocity;
         }
@@ -94,7 +97,7 @@ public class Movement : MonoBehaviour
 
     }
 
-    void Jump()
+    void jump()
     {
         grounded = Physics.CheckSphere(groundCheck.position, groundCheckDist, groundMask);
         canJump = Physics.CheckSphere(groundCheck.position, groundCheckDist + 0.05f, groundMask);

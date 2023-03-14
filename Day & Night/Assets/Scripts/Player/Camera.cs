@@ -49,4 +49,9 @@ public class Camera : MonoBehaviour
         Vector3 euler = transform.localRotation.eulerAngles;
         return euler.y;
     }
+
+    public Quaternion GetRotation()
+    {
+        return transform.localRotation;
+    }
 }
