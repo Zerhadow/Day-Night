@@ -7,7 +7,7 @@ public class EnemyAIController : MonoBehaviour
 {
     public enum Enemy {Melee,Ranged,Flying,Boss};
     public Enemy currentEnemy;
-    [SerializeField] Animator animator; 
+    // [SerializeField] Animator animator; 
 
     [Header("Customizable")]
     [SerializeField] float _lookSpeed = 5f;
@@ -33,7 +33,7 @@ public class EnemyAIController : MonoBehaviour
 
     [Header("Navigation")]
     GameObject player;
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
     
     [Header("Ranged")]
     [SerializeField] GameObject _projectilePrefab;
@@ -47,11 +47,11 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField] GameObject[] _flyEmpties = new GameObject[8];
     [SerializeField] GameObject _projectileGravityPrefab;
     [SerializeField] GameObject _smoke;
-    [SerializeField] GameObject _healthPotion;
     
     // assigns player and accesses
     void Awake() {
         player = GameObject.Find("Player");
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // calls populate enemy if enemy enum is flying
@@ -104,8 +104,8 @@ public class EnemyAIController : MonoBehaviour
         if(enemy == Enemy.Melee) {
             if(distance < 5f) {
                 if(takingdamage == false) {
-                    animator.SetBool("Idle",true);
-                    animator.SetBool("Walk",false);
+                    // animator.SetBool("Idle",true);
+                    // animator.SetBool("Walk",false);
                 }
 
                 LookAtPlayer();
@@ -124,16 +124,16 @@ public class EnemyAIController : MonoBehaviour
             if(distance > 4f && !takingdamage) {
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Idle",false);
-                animator.SetBool("Walk",true);
+                // animator.SetBool("Idle",false);
+                // animator.SetBool("Walk",true);
             }
         }
 
         if(enemy == Enemy.Boss) {
             if(distance < 7f || enemyDead) {
                 if(!takingdamage){
-                    animator.SetBool("Idle",true);
-                    animator.SetBool("Walk",false);
+                    // animator.SetBool("Idle",true);
+                    // animator.SetBool("Walk",false);
                 }
 
                 LookAtPlayer();
@@ -149,8 +149,8 @@ public class EnemyAIController : MonoBehaviour
             } else if(!takingdamage) { // if player is not within 7 meters, navigate towards player
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Idle",false);
-                animator.SetBool("Walk",true);
+                // animator.SetBool("Idle",false);
+                // animator.SetBool("Walk",true);
             }
         }
 
@@ -161,8 +161,8 @@ public class EnemyAIController : MonoBehaviour
                 if(!takingdamage) {
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Idle",false);
-                animator.SetBool("Walk",true);
+                // animator.SetBool("Idle",false);
+                // animator.SetBool("Walk",true);
                 }
             }
         }
@@ -181,8 +181,8 @@ public class EnemyAIController : MonoBehaviour
         //if enemy alive and distance between 17-25m, stop and shoot
         if((distance >= 17f && distance <= 25f) && !enemyDead) {
             agent.isStopped = true;
-            animator.SetBool("Idle",true);
-            animator.SetBool("Walk",false);
+            // animator.SetBool("Idle",true);
+            // animator.SetBool("Walk",false);
             if(!enemyDead) LookAtPlayer();
             if(!delay) {
                 StartCoroutine(RangedAttack());
@@ -195,8 +195,8 @@ public class EnemyAIController : MonoBehaviour
             
         } else if(distance < 17f ) { //if enemy is less than 17 meters, run away from player
             agent.isStopped = false;
-            animator.SetBool("Idle",false);
-            animator.SetBool("Walk",true);
+            // animator.SetBool("Idle",false);
+            // animator.SetBool("Walk",true);
             Vector3 directionToPlayer = transform.position - player.transform.position;
             Vector3 runAwayPos = transform.position + directionToPlayer;
             agent.SetDestination(runAwayPos);
@@ -242,9 +242,9 @@ public class EnemyAIController : MonoBehaviour
         if(takingdamage == false) {
             delay = true;
             agent.isStopped = true;
-            animator.SetBool("Walk",false);
-            animator.SetBool("Idle",false);
-            animator.SetBool("Attack",true);
+            // animator.SetBool("Walk",false);
+            // animator.SetBool("Idle",false);
+            // animator.SetBool("Attack",true);
 
             if(range) {
                 if(!enemyDead){
@@ -263,8 +263,8 @@ public class EnemyAIController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.1f);
-            animator.SetBool("Attack",false);
-            animator.SetBool("Idle",true);
+            // animator.SetBool("Attack",false);
+            // animator.SetBool("Idle",true);
             yield return new WaitForSeconds(1f);
             delay = false;
         }
@@ -277,13 +277,13 @@ public class EnemyAIController : MonoBehaviour
         delay = true;
         yield return new WaitForSeconds(1f);
         if(!takingdamage) {
-            //animator.SetBool("Attack",true);
+            // animator.SetBool("Attack",true);
 
             if(enemyDead == false) {
                 if(_projectilePrefab != null) { //check if the prefab is assigned so no errors are returned
-                    animator.SetBool("Idle",false);
-                    animator.SetBool("Walk",false);
-                    animator.SetBool("Attack",true);
+                    // animator.SetBool("Idle",false);
+                    // animator.SetBool("Walk",false);
+                    // animator.SetBool("Attack",true);
                     // animator.Play("Attack");
                     yield return new WaitForSeconds(1f);
 
@@ -294,8 +294,8 @@ public class EnemyAIController : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(0.1f);
-                animator.SetBool("Attack",false);
-                animator.SetBool("Idle",true);
+                // animator.SetBool("Attack",false);
+                // animator.SetBool("Idle",true);
                 yield return new WaitForSeconds(Random.Range(3f,6f));
                 delay = false;
             }
@@ -310,10 +310,10 @@ public class EnemyAIController : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(4f,6f));
 
             if(enemyDead == false) {
-                animator.SetBool("Attack",true);
+                // animator.SetBool("Attack",true);
                 if(_projectileGravityPrefab != null) { //check if the prefab is assigned so no errors are returned
                     yield return new WaitForSeconds(0.1f);
-                    animator.SetBool("Attack",false);
+                    // animator.SetBool("Attack",false);
                     yield return new WaitForSeconds(0.9f);
 
                     if(!takingdamage) {
@@ -334,9 +334,9 @@ public class EnemyAIController : MonoBehaviour
         //if(takingdamage == false){
             delay = true;
             agent.isStopped = true;
-            animator.SetBool("Walk",false);
-            animator.SetBool("Idle",false);
-            animator.SetBool("Attack",true);
+            // animator.SetBool("Walk",false);
+            // animator.SetBool("Idle",false);
+            // animator.SetBool("Attack",true);
             yield return new WaitForSeconds(1.2f);
             // bossAttack.Play();
 
@@ -348,8 +348,8 @@ public class EnemyAIController : MonoBehaviour
             //if(distance > 7f){
             // animator.SetBool("Walk",false);
             // animator.SetBool("Idle",true);
-            animator.SetBool("Attack",false);
-            //animator.Play("Idle");
+            // animator.SetBool("Attack",false);
+            // animator.Play("Idle");
        // }
             yield return new WaitForSeconds(2.5f);
             agent.isStopped = false;
@@ -361,11 +361,12 @@ public class EnemyAIController : MonoBehaviour
         StartCoroutine(TakeDamage());
     }
     
+    //playes corrresponding death animation and sound
     public void Death() {
         agent.updatePosition = false;
         enemyDead = true;
         agent.enabled = false;
-        animator.SetBool("Death",true);
+        // animator.SetBool("Death",true);
 
         if(currentEnemy == Enemy.Melee) {
             // orcDeath.Play();
@@ -389,9 +390,9 @@ public class EnemyAIController : MonoBehaviour
         takingdamage = true;
         //yield return new WaitForSeconds(0.1f);
         agent.speed = 0;
-        animator.SetBool("Hit",true);
+        // animator.SetBool("Hit",true);
         yield return new WaitForSeconds(0.2f);
-        animator.SetBool("Hit",false);
+        // animator.SetBool("Hit",false);
         yield return new WaitForSeconds(0.1f);
         
         if(currentEnemy == Enemy.Melee)
@@ -407,7 +408,7 @@ public class EnemyAIController : MonoBehaviour
             agent.speed = 9f;
         
         //yield return new WaitForSeconds(0.1f);
-        //animator.SetBool("Hit",false);
+        // animator.SetBool("Hit",false);
         takingdamage = false;
     }
 
@@ -420,12 +421,5 @@ public class EnemyAIController : MonoBehaviour
             Instantiate(_smoke,new Vector3(transform.position.x,transform.position.y-4f,transform.position.z),Quaternion.identity);
         else
             Instantiate(_smoke,transform.position,Quaternion.identity);
-        
-        int healthpot = Random.Range(0,10);
-
-        if(healthpot == 9) {
-            if(_healthPotion != null)
-            Instantiate(_healthPotion,transform.position,Quaternion.identity);
-        }
     }
 }

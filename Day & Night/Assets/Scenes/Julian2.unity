@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 283867340}
   - component: {fileID: 283867339}
   - component: {fileID: 283867344}
-  - component: {fileID: 283867343}
+  - component: {fileID: 283867345}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -1248,33 +1248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &283867343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283867338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42a330ea3b7e714d9132f16c18d5d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 283867344}
-  player: {fileID: 1173873620}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 72
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  sightRange: 100
-  attackRange: 12
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!195 &283867344
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1297,6 +1270,44 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &283867345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283867338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209476f95059cd24d9dcb06d1c7d2d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemy: 0
+  _lookSpeed: 7
+  distance: 0
+  radius: 0
+  range: 0
+  takingdamage: 0
+  L_Player:
+    serializedVersion: 2
+    m_Bits: 128
+  _attackTransform: {fileID: 283867342}
+  enemyDead: 0
+  _projectilePrefab: {fileID: 0}
+  _shotpoint: {fileID: 0}
+  _random: 0
+  delay: 0
+  _flyEmpties:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _projectileGravityPrefab: {fileID: 0}
+  _smoke: {fileID: 0}
 --- !u!1 &309920267
 GameObject:
   m_ObjectHideFlags: 0
@@ -3235,7 +3246,7 @@ GameObject:
   - component: {fileID: 928842062}
   - component: {fileID: 928842061}
   - component: {fileID: 928842060}
-  - component: {fileID: 928842059}
+  - component: {fileID: 928842065}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -3243,33 +3254,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &928842059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928842058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42a330ea3b7e714d9132f16c18d5d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 928842060}
-  player: {fileID: 1173873620}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 72
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  sightRange: 100
-  attackRange: 12
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!195 &928842060
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3371,6 +3355,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928842065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928842058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209476f95059cd24d9dcb06d1c7d2d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemy: 1
+  _lookSpeed: 12
+  distance: 0
+  radius: 0
+  range: 0
+  takingdamage: 0
+  L_Player:
+    serializedVersion: 2
+    m_Bits: 128
+  _attackTransform: {fileID: 928842064}
+  enemyDead: 0
+  _projectilePrefab: {fileID: 1011306777333663748, guid: 694529d173b113f459393a04f8e2ecd2,
+    type: 3}
+  _shotpoint: {fileID: 928842058}
+  _random: 0
+  delay: 0
+  _flyEmpties:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _projectileGravityPrefab: {fileID: 0}
+  _smoke: {fileID: 0}
 --- !u!1 &933834593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3849,12 +3872,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc31764c63d86f141a3e3c17ecc975cc, type: 3}
---- !u!4 &1173873620 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3410629838289022702, guid: dc31764c63d86f141a3e3c17ecc975cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1173873619}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184467455
 GameObject:
   m_ObjectHideFlags: 0
