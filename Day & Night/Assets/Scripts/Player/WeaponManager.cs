@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [Header("Game Objects")]
-    [SerializeField] Camera cam;
+    [SerializeField] PlayerCamera cam;
     [SerializeField] Transform lookPoint;
 
     [Header("Initial Weapons")]
