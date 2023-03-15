@@ -30,7 +30,6 @@ public class Fireball : MonoBehaviour
     {
         if(other.tag != "Player")
         {
-            Debug.Log("Hit!");
             Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

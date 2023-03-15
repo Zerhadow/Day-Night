@@ -18,7 +18,7 @@ public class Bolt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.up * velocity * Time.deltaTime;
+        transform.position += transform.forward * velocity * Time.deltaTime;
     }
 
     IEnumerator killSelf()

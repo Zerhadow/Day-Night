@@ -6,7 +6,8 @@ using UnityEngine;
 public class Crossbow : MonoBehaviour
 {
     [SerializeField] GameObject bolt = null;
-    [SerializeField] GameObject loadedBolt = null;
+    [SerializeField] GameObject fullCrossbow = null;
+    [SerializeField] GameObject emptyCrossbow = null;
     [SerializeField] Transform firePoint = null;
     [SerializeField] float startTime = 0.05f;
     [SerializeField] float recoveryTime = 1f;
@@ -18,6 +19,8 @@ public class Crossbow : MonoBehaviour
     void Start()
     {
         cam = transform.parent.GetComponent<Camera>();
+        fullCrossbow.SetActive(true);
+        emptyCrossbow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,11 +55,13 @@ public class Crossbow : MonoBehaviour
 
             GameObject newBolt = Instantiate(bolt, firePoint.position, Quaternion.identity);
             newBolt.transform.forward = direction;
-            loadedBolt.SetActive(false);
+            fullCrossbow.SetActive(false);
+            emptyCrossbow.SetActive(true);
             yield return new WaitForSeconds(recoveryTime);
 
             canShoot = true;
-            loadedBolt.SetActive(true);
+            fullCrossbow.SetActive(true);
+            emptyCrossbow.SetActive(false);
         }
     }
 }
