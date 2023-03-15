@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {   
+public class PlayerController : MonoBehaviour {
+
     public float maxHP = 100;
     public float currHP = 100;
     public float damage = 10;
@@ -12,16 +13,13 @@ public class EnemyController : MonoBehaviour {
 
     public HUDHealth healthBar;
 
-    EnemyAIController enemyAI;
-
     void Awake() {
         currHP = maxHP;
-        enemyAI = GetComponent<EnemyAIController>();
     }
 
     // Start is called before the first frame update
     void Start() {
-
+        
     }
 
     // Update is called once per frame
@@ -43,8 +41,8 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Die() {
-        Debug.Log(transform.name + " died.");
-        enemyAI.Death();
-        // Destroy(this.gameObject,3f);
+        Debug.Log(transform.name + " fainted.");
+        // Fade scene to black, then start night phase
+        //health reset to 1
     }
 }
