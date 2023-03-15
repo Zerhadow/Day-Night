@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2154563229851325737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Look Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 3410629838289022701}
   - component: {fileID: 3410629838289022696}
   - component: {fileID: 8158237971381229849}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   jumpHeight: 1
   jumpDuration: 0.75
   airResistanceCoefficient: 0.5
-  velocity2: {x: 0, y: 0, z: 0}
+  velocityMargin: 0.01
 --- !u!143 &8158237971381229849
 CharacterController:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3880760453549662151}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
