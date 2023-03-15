@@ -88,7 +88,7 @@ public class WeaponManager : MonoBehaviour
         switching = true;
         weapons[weaponIndex].SetActive(false);
         weaponIndex = nextWeapon;
-        yield return timeToSwitch;
+        yield return new WaitForSeconds(timeToSwitch);
         weapons[weaponIndex].SetActive(true);
         switching = false;
     }
@@ -99,7 +99,7 @@ public class WeaponManager : MonoBehaviour
         weapon.transform.SetParent(cam.transform);
         weapon.transform.localPosition = Vector3.zero;
         int typeIndex = (int)type;
-        if (typeIndex > -1 && typeIndex < 4)
+        if (typeIndex > -1 && typeIndex < 3)
         {
             weapons[typeIndex] = weapon;
             if (weaponIndex != -1)
@@ -107,7 +107,7 @@ public class WeaponManager : MonoBehaviour
             weapon.SetActive(true);
             weaponIndex = typeIndex;
         }
-        else if (typeIndex == 4)
+        else if (typeIndex == 3)
         {
             fireBall = weapon;
             fireBall.SetActive(true);

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286120515897803907}
+  - component: {fileID: 6151873899514003199}
   m_Layer: 0
   m_Name: Crossbow
   m_TagString: Untagged
@@ -30,9 +31,29 @@ Transform:
   m_Children:
   - {fileID: 1286120516622388372}
   - {fileID: 5210632872547214164}
+  - {fileID: 9004167564364633059}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6151873899514003199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286120515897803906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc87e6fa16391c458624a7e3fa9ddb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testBall: {fileID: 2283804032801753861, guid: c6273bc6f14a15741bf09af346d564d6,
+    type: 3}
+  bolt: {fileID: 8859055968314370229, guid: 294cc4d90915c8a4a82b8f9f9180714e, type: 3}
+  loadedBolt: {fileID: 4420076214632751416}
+  firePoint: {fileID: 9004167564364633059}
+  startTime: 0.05
+  recoveryTime: 1
 --- !u!1 &1286120516622388375
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,3 +249,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &6731304705351037580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9004167564364633059}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9004167564364633059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731304705351037580}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.378, y: -0.204, z: 1.748}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1286120515897803907}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
