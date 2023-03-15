@@ -51,6 +51,6 @@ MonoBehaviour:
   testBow: {fileID: 1286120515897803906, guid: 85c477f12de9a1e4896d78e07f54ddd0, type: 3}
   testBlunderbuss: {fileID: 3437444935818160597, guid: 00161d5c9e8614140a553e505eca0f46,
     type: 3}
-  testFireball: {fileID: 7475856586968304067, guid: 67012499c4ef72449851e040d006e0cb,
+  testFireball: {fileID: 5866131662950547890, guid: 28ae8941ba2394543b7662315d61901a,
     type: 3}
   timeToSwitch: 0.05
