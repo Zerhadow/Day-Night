@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] Camera cam = null;
+    [SerializeField] PlayerCamera cam = null;
     [SerializeField] Transform groundCheck = null;
 
     [SerializeField] float maxVelocity = 5f;
@@ -12,12 +12,13 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;
     [SerializeField] float jumpDuration = 0.25f;
     [SerializeField] float airResistanceCoefficient = 0.5f;
+    [SerializeField] float velocityMargin = 0.01f;
 
     CharacterController controller;
 
     float gravity = 0f;
     float acceleration = 0f;
-    public Vector3 velocity2 = Vector3.zero;
+    Vector3 velocity2 = Vector3.zero;
     Vector3 velocityZ = Vector3.zero;
     Vector3 jumpVector = Vector3.zero;
 
@@ -81,14 +82,20 @@ public class Movement : MonoBehaviour
         if (direction == Vector3.zero && velocity2.magnitude > 0)
         {
             velocity2 += velocity2.normalized * -currentAcc * Time.deltaTime;
-            if (velocity2.magnitude < 0.005)
+            if (velocity2.magnitude < velocityMargin)
                 velocity2 = Vector3.zero;
         }
         else
         {
             velocity2 += direction.normalized * currentAcc * Time.deltaTime;
-            if (velocity2.magnitude > maxVelocity)
-                velocity2 = velocity2.normalized*maxVelocity;
+        }
+
+        if (velocity2.magnitude > maxVelocity)
+        {
+            if(Mathf.Abs(maxVelocity-velocity2.magnitude) < velocityMargin)
+                velocity2 = velocity2.normalized * maxVelocity;
+            else
+                velocity2 += velocity2.normalized * -currentAcc * Time.deltaTime;
         }
 
         // Move the player
@@ -119,5 +126,19 @@ public class Movement : MonoBehaviour
         }
 
         controller.Move(velocityZ * Time.deltaTime);
+    }
+
+    public void applyForce(Vector3 force)
+    {
+        Vector3 temp = new Vector3(force.x, 0f, force.z);
+        velocity2 += temp;
+        velocityZ.z += force.z;
+    }
+
+    public void setVelocity(Vector3 velocity)
+    {
+        Vector3 temp = new Vector3(velocity.x, 0f, velocity.z);
+        velocity2 = temp;
+        velocityZ.z = velocity.z;
     }
 }
