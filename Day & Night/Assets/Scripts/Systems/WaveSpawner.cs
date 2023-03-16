@@ -8,8 +8,10 @@ public class WaveSpawner : MonoBehaviour {
     [System.Serializable]
     public class Wave {
         public string name;
-        public Transform enemy;
-        public int count;
+        [Header("Enemy prefabs")]
+        public Transform[] enemy;
+        [Header("Number of enemies per type")]
+        public int[] enemies;
         public float rate; //amount of time in between mob spawns
     }
 
@@ -83,15 +85,19 @@ public class WaveSpawner : MonoBehaviour {
         return true;
     }
 
-    IEnumerator SpawnWave(Wave _wave) {
-        int count = 0;
-        Debug.Log("Spawning Wave: " + _wave.name);
+    IEnumerator SpawnWave(Wave wave) {
+        Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        for(int i = 0; i < _wave.count; i++) {
-            SpawnEnemy(_wave.enemy, count);
-            yield return new WaitForSeconds(1/_wave.rate);
-            count++;
+        if(wave.enemy.Length == wave.enemies.Length) {
+            for(int i = 0; i < wave.enemy.Length; i++) {
+                for(int j = 0; j < wave.enemies[i]; j++) {
+                    SpawnEnemy(wave.enemy[i]);
+                    yield return new WaitForSeconds(1/wave.rate);
+                }
+            }
+        } else {
+            Debug.Log("Enemy and enemy count arrays are not the same length");
         }
 
         state = SpawnState.WAITING;
@@ -99,11 +105,11 @@ public class WaveSpawner : MonoBehaviour {
         yield break;
     }
 
-    void SpawnEnemy(Transform _enemy, int count) {
+    void SpawnEnemy(Transform _enemy) {
         Debug.Log("Spawning Enemy: " + _enemy.name);
 
         //spawn enemy; change from random
-        Transform _sp = spawnPoints[count];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
     }
 }
