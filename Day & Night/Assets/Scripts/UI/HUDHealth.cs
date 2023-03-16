@@ -15,7 +15,7 @@ public class HUDHealth : MonoBehaviour {
         slider.value = HP;
     }
 
-    public void SetHealth(int health) {
+    public void SetHealth(float health) {
         slider.value = health;
     }
 }
