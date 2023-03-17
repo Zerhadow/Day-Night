@@ -27,6 +27,10 @@ public class Sword : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        canSwing = true;
+    }
     IEnumerator swing()
     {
         canSwing = false;

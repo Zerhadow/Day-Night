@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour
     {
         Sword = 0,
         Crossbow = 1,
-        Blunderbus = 2,
+        Blunderbuss = 2,
         Fireball = 3
     }
 
@@ -37,7 +37,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (testBlunderbuss != null)
         {
-            AddWeapon(testBlunderbuss, WeaponType.Blunderbus);
+            AddWeapon(testBlunderbuss, WeaponType.Blunderbuss);
         }
 
         if (testBow != null)
@@ -98,12 +98,17 @@ public class WeaponManager : MonoBehaviour
         GameObject weapon = Instantiate(weaponPrefab);
         weapon.transform.SetParent(cam.transform);
         weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
         int typeIndex = (int)type;
         if (typeIndex > -1 && typeIndex < 3)
         {
+            if (weapons[typeIndex] != null)
+                Destroy(weapons[typeIndex]);
+
             weapons[typeIndex] = weapon;
             if (weaponIndex != -1)
                 weapons[weaponIndex].SetActive(false);
+
             weapon.SetActive(true);
             weaponIndex = typeIndex;
         }

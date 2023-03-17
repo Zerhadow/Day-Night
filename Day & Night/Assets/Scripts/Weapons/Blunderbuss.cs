@@ -32,6 +32,11 @@ public class Blunderbuss : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        canShoot = true;
+    }
+
     IEnumerator shoot()
     {
         canShoot = false;
