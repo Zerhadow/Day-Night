@@ -27,6 +27,14 @@ public class WaveSpawner : MonoBehaviour {
 
     private SpawnState state = SpawnState.COUNTING;
 
+    ItemManager itemManager;
+    WeaponManager weaponManager;
+
+    void Awake() {
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+    }
+
     void Start() {
         if(spawnPoints.Length == 0) {
             Debug.Log("No spawn points referenced");
@@ -66,6 +74,7 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("All waves complete! Looping. . .");
         } else {
             nextWave++;
+            itemManager.setSpawnSet(nextWave);
         }
     }
 
@@ -88,6 +97,8 @@ public class WaveSpawner : MonoBehaviour {
     IEnumerator SpawnWave(Wave wave) {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
+
+        //UI there?
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
