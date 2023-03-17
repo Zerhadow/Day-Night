@@ -30,6 +30,11 @@ public class FireballCaster : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        canCast = true;
+    }
+
     IEnumerator cast()
     {
         canCast = false;
