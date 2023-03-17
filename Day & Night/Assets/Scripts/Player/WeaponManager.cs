@@ -122,4 +122,13 @@ public class WeaponManager : MonoBehaviour
             Destroy(weapon);
         }
     }
+
+    public void clear()
+    {
+        weaponIndex = -1;
+        foreach(GameObject weapon in weapons)
+            Destroy(weapon);
+
+        Destroy(fireBall);
+    }
 }
