@@ -24,10 +24,8 @@ public class PlayerController : MonoBehaviour {
         
     }
 
-    public void Heal(float health)
-    {
-        if (health > 0)
-        {
+    public void Heal(float health) {
+        if (health > 0) {
             currHP += health;
             currHP = Mathf.Clamp(currHP, 0, maxHP);
         }
@@ -50,5 +48,6 @@ public class PlayerController : MonoBehaviour {
         Debug.Log(transform.name + " fainted.");
         // Fade scene to black, then start night phase
         //health reset to 1
+        //teleport to location to night spawn
     }
 }
