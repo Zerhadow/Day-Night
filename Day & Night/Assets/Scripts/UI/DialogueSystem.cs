@@ -9,7 +9,7 @@ public class DialogueSystem : MonoBehaviour
     public Text nameText; // Name from ChatBackground Game Object
     public Text dialogueText; // DialogueText from ChatBackground Game Object
 
-    public GameObject dialogueGUI; // ItemPrompt(Canvas) that has "F to chat" (Text) inside
+    public GameObject dialogueGUI; // NPCPrompt(Canvas) that has "F to chat" (Text) inside
     public Transform dialogueBoxUI; // Contains DialogueGUI (Canvas) from DialogueSystem (Empty)
     public float letterDelay = 0.1f; // Typing Speed
     public float letterMultiplier = 0.5f; // Hold Action button Typing Speed
@@ -22,7 +22,7 @@ public class DialogueSystem : MonoBehaviour
     public bool letterIsMultiplied = false; // Text starts out moving at (letterDelay) speed
     public bool dialogueActive = false;
     public bool dialogueEnded = false;
-    public bool outOfRange = true; // Player starts out of range of item
+    public bool outOfRange = true; // Player starts out of range of npc
     
     // Start is called before the first frame update
     void Start()
@@ -36,29 +36,34 @@ public class DialogueSystem : MonoBehaviour
         
     }
 
-    public void EnterRangeOfItem()
+    public void EnterRangeOfNPC()
     {
-        outOfRange = false; // Player is in range of Item
+        Debug.Log("Hit DS.EnterRangeOfNPC()");
+        outOfRange = false; // Player is in range of NPC
         dialogueGUI.SetActive(true); // Show the prompt for the action key
 
         // If they have pressed the action key, stop showing the prompt.
         if(dialogueActive == true)
         {
+            Debug.Log("EnterRangeOfNPC() -> dialogue is active, stop showing button prompt");
             dialogueGUI.SetActive(false);
         }
     }
 
-    // Called from Item.cs when Player collides with Item and presses action key
-    public void ItemName()
+    // Called from NPC.cs when Player collides with NPC and presses action key
+    public void NPCName()
     {
+        Debug.Log("Hit DS.NPCName()");
         outOfRange = false;
-        dialogueBoxUI.gameObject.SetActive(true); // Item's Dialogue now appears on screen
-        nameText.text = Names; // Get names from the Item
+        dialogueBoxUI.gameObject.SetActive(true); // NPC's Dialogue now appears on screen
+        nameText.text = Names; // Get names from the NPC
 
         if(Input.GetKeyDown(KeyCode.F)) // NOTE!!!!! Maybe remove this if statement since callling this function requires a keycode.f already
         {
+            Debug.Log("DS.NPCName() -> action key pressed");
             if(!dialogueActive)
             {
+                Debug.Log("DS.NPCName() -> action key pressed -> dialogue started");
                 dialogueActive = true;
                 StartCoroutine(StartDialogue());
             }
@@ -106,12 +111,17 @@ public class DialogueSystem : MonoBehaviour
             DropDialogue();
 
         }
+        else
+        {
+            Debug.Log("DS.StartDialogue() but won't display because out of range");
+        }
     }
 
     private IEnumerator DisplayString(string stringToDisplay)
     {
         if(outOfRange == false)
         {
+            Debug.Log("DS.DisplayString()");
             int stringLength = stringToDisplay.Length;
             int currentCharacterIndex = 0;
 
@@ -156,10 +166,16 @@ public class DialogueSystem : MonoBehaviour
             dialogueText.text = "";
 
         }
+
+        else
+        {
+            Debug.Log("DS.DisplayString() but won't display because out of range");
+        }
     }
 
     public void DropDialogue()
     {
+        Debug.Log("DS.DropDialogue()");
         dialogueGUI.SetActive(false);
         dialogueBoxUI.gameObject.SetActive(false);
     }

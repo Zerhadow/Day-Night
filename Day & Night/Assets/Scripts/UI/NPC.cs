@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Item : MonoBehaviour
+public class NPC : MonoBehaviour
 {
     
     public Transform ChatBackground; // Image of the Dialogue Box
-    public Transform item; // Object that Player interacts with
+    public Transform npc; // Object that Player interacts with
 
     private DialogueSystem dialogueSystem; // 
 
@@ -26,29 +26,31 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = Camera.main.WorldToScreenPoint(item.position); // Turns item's 3D position into a 2D pixelized position.
-        position.y += 170; // Places DialogueBox 170 units above the center of the item
+        Vector3 position = Camera.main.WorldToScreenPoint(npc.position); // Turns npc's 3D position into a 2D pixelized position.
+        position.y += 250; // Places DialogueBox 170 units above the center of the npc
         ChatBackground.position = position;
     }
 
     public void OnTriggerStay(Collider other)
     {
-        this.gameObject.GetComponent<Item>().enabled = true; // Item(Script) is disabled at first in the case of being in the presence of multiple items
+        this.gameObject.GetComponent<NPC>().enabled = true; // NPC(Script) is disabled at first in the case of being in the presence of multiple npcs
 
-        FindObjectOfType<DialogueSystem>().EnterRangeOfItem();
+        FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
         if((other.gameObject.tag == "Player") && Input.GetKeyDown(KeyCode.F))
         {
-            this.gameObject.GetComponent<Item>().enabled = true;
+            Debug.Log("Hit NPC.OnTriggerStay()");
+            this.gameObject.GetComponent<NPC>().enabled = true;
             dialogueSystem.Names = Name; // Name that appears in DialogueBox is set
             dialogueSystem.dialogueLines = sentences; // DialogueText that appears in DialogueBox is set
-            FindObjectOfType<DialogueSystem>().ItemName();
+            FindObjectOfType<DialogueSystem>().NPCName();
         }
     }
 
     public void OnTriggerExit()
     {
+        Debug.Log("Hit NPC.OnTriggerExit()");
         FindObjectOfType<DialogueSystem>().OutOfRange();
-        this.gameObject.GetComponent<Item>().enabled = false; // Item(Script) is disabled once again
+        this.gameObject.GetComponent<NPC>().enabled = false; // NPC(Script) is disabled once again
     }
 
 

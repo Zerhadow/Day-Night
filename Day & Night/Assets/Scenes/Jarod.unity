@@ -2289,7 +2289,7 @@ Transform:
   m_Children:
   - {fileID: 545244927}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882099388
 GameObject:
@@ -3336,6 +3336,7 @@ GameObject:
   - component: {fileID: 1140570513}
   - component: {fileID: 1140570512}
   - component: {fileID: 1140570511}
+  - component: {fileID: 1140570516}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -3356,7 +3357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChatBackground: {fileID: 57315456}
-  item: {fileID: 1140570515}
+  npc: {fileID: 1140570515}
   Name: Kalatok
   sentences:
   - Hello, brave warrior! My name is Kalatok the Living Sword...
@@ -3371,10 +3372,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140570510}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1140570513
 MeshRenderer:
@@ -3434,13 +3435,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140570510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 10}
+  m_LocalPosition: {x: 0, y: 1.5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1140570516
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140570510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1164421847
 GameObject:
   m_ObjectHideFlags: 0
@@ -4073,7 +4087,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1302671788
 GameObject:
@@ -5625,7 +5639,7 @@ RectTransform:
   m_Children:
   - {fileID: 1175681538}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6539,7 +6553,7 @@ PrefabInstance:
     - target: {fileID: 638818290273877646, guid: 73a0ab18ba1ce0849ab9d259fd666881,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 638818290273877646, guid: 73a0ab18ba1ce0849ab9d259fd666881,
         type: 3}
@@ -6746,7 +6760,7 @@ PrefabInstance:
     - target: {fileID: 7997981544492588071, guid: f389a68bffe6e864fbb287d12c3502fb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7997981544492588071, guid: f389a68bffe6e864fbb287d12c3502fb,
         type: 3}
