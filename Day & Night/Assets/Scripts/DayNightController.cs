@@ -55,19 +55,19 @@ public class DayNightController : MonoBehaviour
     void Update()
     {
         // Test Inputs:
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             UpdateSkyNextWave();
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.O))
         {
             UpdateSkyDay();
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.I))
         {
             UpdateSkyNight();
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.U))
         {
             UpdateSkyEclipse();
         }
@@ -106,7 +106,7 @@ public class DayNightController : MonoBehaviour
         RenderSettings.skybox = _daySky;
         _skyLight.color = _waveLight[0];
         _skyLight.transform.eulerAngles = _waveAngle[0];
-        _sun.transform.eulerAngles = new Vector3(80, 6, 1);
+        _sun.transform.eulerAngles = new Vector3(-10, 1, -6);
         index = 0;
     }
 
