@@ -6,24 +6,23 @@ using UnityEngine.UI;
 public class DialogueSystem : MonoBehaviour
 {
     
-    public Text nameText;
-    public Text dialogueText;
+    public Text nameText; // Name from ChatBackground Game Object
+    public Text dialogueText; // DialogueText from ChatBackground Game Object
 
-    public GameObject dialogueGUI;
-    public Transform dialogueBoxUI;
-
-    public float letterDelay = 0.1f;
-    public float letterMultiplier = 0.5f;
+    public GameObject dialogueGUI; // ItemPrompt(Canvas) that has "F to chat" (Text) inside
+    public Transform dialogueBoxUI; // Contains DialogueGUI (Canvas) from DialogueSystem (Empty)
+    public float letterDelay = 0.1f; // Typing Speed
+    public float letterMultiplier = 0.5f; // Hold Action button Typing Speed
 
     public KeyCode dialogueInput = KeyCode.F;
 
     public string Names;
     public string[] dialogueLines;
 
-    public bool letterIsMultiplied = false;
+    public bool letterIsMultiplied = false; // Text starts out moving at (letterDelay) speed
     public bool dialogueActive = false;
     public bool dialogueEnded = false;
-    public bool outOfRange = true;
+    public bool outOfRange = true; // Player starts out of range of item
     
     // Start is called before the first frame update
     void Start()
@@ -39,20 +38,24 @@ public class DialogueSystem : MonoBehaviour
 
     public void EnterRangeOfItem()
     {
-        outOfRange = false;
-        dialogueGUI.SetActive(true);
+        outOfRange = false; // Player is in range of Item
+        dialogueGUI.SetActive(true); // Show the prompt for the action key
+
+        // If they have pressed the action key, stop showing the prompt.
         if(dialogueActive == true)
         {
             dialogueGUI.SetActive(false);
         }
     }
 
+    // Called from Item.cs when Player collides with Item and presses action key
     public void ItemName()
     {
         outOfRange = false;
-        dialogueBoxUI.gameObject.SetActive(true);
-        nameText.text = Names;
-        if(Input.GetKeyDown(KeyCode.F))
+        dialogueBoxUI.gameObject.SetActive(true); // Item's Dialogue now appears on screen
+        nameText.text = Names; // Get names from the Item
+
+        if(Input.GetKeyDown(KeyCode.F)) // NOTE!!!!! Maybe remove this if statement since callling this function requires a keycode.f already
         {
             if(!dialogueActive)
             {
@@ -75,7 +78,7 @@ public class DialogueSystem : MonoBehaviour
                 if(!letterIsMultiplied)
                 {
                     letterIsMultiplied = true;
-                    StartCoroutine(DisplayString(dialogueLines[currentDialogueIndex++]));
+                    StartCoroutine(DisplayString(dialogueLines[currentDialogueIndex++])); // Typewriter effect
 
                     if(currentDialogueIndex >= dialogueLength)
                     {
@@ -86,6 +89,8 @@ public class DialogueSystem : MonoBehaviour
             }
 
 
+            // Busy wait until player presses the action key to finish reading all dialogue and
+            // dialogue box can disappear. 
             while(true)
             {
                 if(Input.GetKeyDown(dialogueInput) && dialogueEnded == false)
@@ -94,6 +99,8 @@ public class DialogueSystem : MonoBehaviour
                 }
                 yield return 0;
             }
+            
+            // Reset for the next time the dialogue is triggered
             dialogueEnded = false;
             dialogueActive = false;
             DropDialogue();
