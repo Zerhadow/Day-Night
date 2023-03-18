@@ -35,6 +35,8 @@ public class Movement : MonoBehaviour
     KeyCode JUMP = KeyCode.Space;
     #endregion
 
+    public bool disabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (disabled)
+            return;
         move();
         jump();
     }

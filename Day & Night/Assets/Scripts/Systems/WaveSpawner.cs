@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
-    public enum SpawnState {SPAWNING, WAITING, COUNTING};
+    public enum SpawnState {SPAWNING, WAITING, COUNTING, RESTARTING};
 
     [System.Serializable]
     public class Wave {
@@ -33,9 +33,15 @@ public class WaveSpawner : MonoBehaviour {
     public bool isDay = true;
     public bool isNight = false;
 
+    PlayerController player;
+
+    AudioFile dayTrack;
+    AudioFile nightTrack;
+
     void Awake() {
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void Start() {
@@ -47,7 +53,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void Update() {
-        if(state == SpawnState.WAITING) {
+        if(state == SpawnState.WAITING && isDay) {
             //check if enemies are still alive
             if(!EnemyIsAlive()) {
                 Debug.Log("Wave completed");
@@ -64,6 +70,16 @@ public class WaveSpawner : MonoBehaviour {
             }
         } else {
             waveCountdown -=Time.deltaTime;
+        }
+    }
+
+    void FixedUpdate() {
+        if(player.playerDied) {
+            isNight = true;
+            isDay = false;
+            despawnAllEnemies();
+            state = SpawnState.RESTARTING;
+            nextWave = 0;
         }
     }
 
@@ -125,5 +141,13 @@ public class WaveSpawner : MonoBehaviour {
         //spawn enemy; change from random
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+    }
+
+    void despawnAllEnemies() {
+        // Debug.Log("Despawning all enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) {
+            Destroy(enemy);
+        }
     }
 }
