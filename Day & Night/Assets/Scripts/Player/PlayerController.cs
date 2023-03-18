@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour {
 
     public HUDHealth healthBar;
 
+    public Animator transition;
+    public float transitionTime = 1f;
+
     void Awake() {
         currHP = maxHP;
     }
@@ -47,7 +50,15 @@ public class PlayerController : MonoBehaviour {
     void Die() {
         Debug.Log(transform.name + " fainted.");
         // Fade scene to black, then start night phase
-        //health reset to 1
+        StartCoroutine(FadeOut());
+
+        currHP = 1; //player has to go and find health pickups
         //teleport to location to night spawn
+    }
+
+    IEnumerator FadeOut() {
+        transition.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(transitionTime);
     }
 }

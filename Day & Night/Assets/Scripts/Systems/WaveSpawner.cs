@@ -30,6 +30,9 @@ public class WaveSpawner : MonoBehaviour {
     ItemManager itemManager;
     WeaponManager weaponManager;
 
+    public bool isDay = true;
+    public bool isNight = false;
+
     void Awake() {
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
