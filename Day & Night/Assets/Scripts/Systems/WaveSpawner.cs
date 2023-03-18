@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour {
     public enum SpawnState {SPAWNING, WAITING, COUNTING, RESTARTING};
@@ -17,6 +19,9 @@ public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
+
+    public TMP_Text valueText;
+    public int waveCount;
 
     public Transform[] spawnPoints;
 
@@ -39,9 +44,14 @@ public class WaveSpawner : MonoBehaviour {
     AudioFile nightTrack;
 
     void Awake() {
+        waveCount = nextWave + 1;
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        // dayTrack = GameObject.Find("DayTrack").GetComponent<AudioFile>();
+        // nightTrack = GameObject.Find("NightTrack").GetComponent<AudioFile>();
+        valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
+        valueText.text = "Wave: " + waveCount.ToString();
     }
 
     void Start() {
