@@ -111,7 +111,7 @@ public class EnemyAIController : MonoBehaviour
                 LookAtPlayer();
             }
 
-            if(distance < 4.2f || enemyDead) {
+            if(distance < 4.2f || !enemyDead) {
                 agent.isStopped = true;
                 //LookAtPlayer();
                 if(enemyDead == false) {
@@ -121,7 +121,7 @@ public class EnemyAIController : MonoBehaviour
             }
 
             //if enemy is not within 4 meters, navigate towards player
-            if(distance > 4f && !takingdamage) {
+            if(distance > 4f && !takingdamage && !enemyDead) {
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
                 // animator.SetBool("Idle",false);
@@ -382,7 +382,7 @@ public class EnemyAIController : MonoBehaviour
             // flyingDeath.Play();
         }
 
-        agent.isStopped = true;
+        // agent.isStopped = true;
         StartCoroutine(OnDeath());
     }
     
@@ -413,13 +413,13 @@ public class EnemyAIController : MonoBehaviour
     }
 
     IEnumerator OnDeath() {
-        yield return new WaitForSeconds(2.9f);
+        yield return new WaitForSeconds(2.0f);
 
-        if(currentEnemy == Enemy.Boss)
-            Instantiate(_smoke,new Vector3(transform.position.x,transform.position.y-2f,transform.position.z),Quaternion.identity);
-        else if(currentEnemy == Enemy.Flying)
-            Instantiate(_smoke,new Vector3(transform.position.x,transform.position.y-4f,transform.position.z),Quaternion.identity);
-        else
-            Instantiate(_smoke,transform.position,Quaternion.identity);
+        // if(currentEnemy == Enemy.Boss)
+        //     Instantiate(_smoke,new Vector3(transform.position.x,transform.position.y-2f,transform.position.z),Quaternion.identity);
+        // else if(currentEnemy == Enemy.Flying)
+        //     Instantiate(_smoke,new Vector3(transform.position.x,transform.position.y-4f,transform.position.z),Quaternion.identity);
+        // else
+        //     Instantiate(_smoke,transform.position,Quaternion.identity);
     }
 }
