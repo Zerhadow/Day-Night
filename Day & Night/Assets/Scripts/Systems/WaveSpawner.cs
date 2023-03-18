@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class WaveSpawner : MonoBehaviour {
-    public enum SpawnState {SPAWNING, WAITING, COUNTING, RESTARTING};
+    public enum SpawnState {SPAWNING, WAITING, COUNTING};
 
     [System.Serializable]
     public class Wave {
@@ -22,6 +22,8 @@ public class WaveSpawner : MonoBehaviour {
 
     public TMP_Text valueText;
     public int waveCount;
+    Slider waveSlider;
+    int totalEnemies;
 
     public Transform[] spawnPoints;
 
@@ -52,6 +54,7 @@ public class WaveSpawner : MonoBehaviour {
         // nightTrack = GameObject.Find("NightTrack").GetComponent<AudioFile>();
         valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
         valueText.text = "Wave: " + waveCount.ToString();
+        waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
     }
 
     void Start() {
@@ -81,9 +84,14 @@ public class WaveSpawner : MonoBehaviour {
         } else {
             waveCountdown -=Time.deltaTime;
         }
+
+        GetTotalEnemies();
     }
 
     void FixedUpdate() {
+
+        waveSlider.value = totalEnemies;
+
         if(player.playerDied) {
             isNight = true;
             isDay = false;
@@ -125,8 +133,6 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        //UI there?
-
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
                 for(int j = 0; j < wave.enemies[i]; j++) {
@@ -137,6 +143,8 @@ public class WaveSpawner : MonoBehaviour {
         } else {
             Debug.Log("Enemy and enemy count arrays are not the same length");
         }
+
+        waveSlider.maxValue = totalEnemies;
 
         state = SpawnState.WAITING;
 
@@ -157,5 +165,12 @@ public class WaveSpawner : MonoBehaviour {
         foreach(GameObject enemy in enemies) {
             Destroy(enemy);
         }
+    }
+
+    void GetTotalEnemies() {
+        // Debug.Log("Getting total enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        totalEnemies = enemies.Length;
+        // Debug.Log("Total enemies: " + totalEnemies);
     }
 }
