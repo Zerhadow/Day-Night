@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour {
     IEnumerator teleportToNightSpawnCoroutine() {
         Debug.Log("Teleporting to night spawn");
         movement.disabled = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = nightSpawnPt;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         movement.disabled = false;
     }
 }

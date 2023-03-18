@@ -53,9 +53,9 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void Update() {
-        if(state == SpawnState.WAITING && isDay) {
+        if(state == SpawnState.WAITING) {
             //check if enemies are still alive
-            if(!EnemyIsAlive()) {
+            if(!EnemyIsAlive() && isDay) {
                 Debug.Log("Wave completed");
                 WaveCompleted();
             } else {
@@ -65,8 +65,8 @@ public class WaveSpawner : MonoBehaviour {
 
         if(waveCountdown <= 0) {
             if(state != SpawnState.SPAWNING) {
-                //start spawning wave
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                if(isDay) //start spawning waves
+                    StartCoroutine(SpawnWave(waves[nextWave]));
             }
         } else {
             waveCountdown -=Time.deltaTime;
@@ -78,8 +78,7 @@ public class WaveSpawner : MonoBehaviour {
             isNight = true;
             isDay = false;
             despawnAllEnemies();
-            state = SpawnState.RESTARTING;
-            nextWave = 0;
+            nextWave = 0; //reset wave count
         }
     }
 
@@ -100,8 +99,7 @@ public class WaveSpawner : MonoBehaviour {
     bool EnemyIsAlive() {
         searchCountdown -= Time.deltaTime;
 
-        if(searchCountdown <= 0f) {
-
+        if(searchCountdown <= 0f && isDay) {
             if(GameObject.FindGameObjectWithTag("Enemy") == null) {
                 Debug.Log("No enemies alive");
                 return false;
