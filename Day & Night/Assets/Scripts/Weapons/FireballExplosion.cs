@@ -25,6 +25,9 @@ public class FireballExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        if(other.tag == "Enemy") {
+            Debug.Log("Hit enemy");
+            other.GetComponent<EnemyController>().TakeDamage(10);
+        }
     }
 }
