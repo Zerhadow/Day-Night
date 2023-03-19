@@ -28,15 +28,19 @@ public class PlayerController : MonoBehaviour {
 
     Movement movement;
     public bool inCell = false;
+    private bool hitBed = false;
 
     AudioSource dayTrack;
     AudioSource nightTrack;
     AudioSource cellTrack;
     AudioManager audioManager;
 
+    public GameObject bedText;
     GameObject zoneAreaObj;
     TMP_Text zoneText;
     Animator zoneAnimator;
+
+    KeyCode interactKey = KeyCode.E;
 
     public bool isDay = true;
     public bool isNight = false;
@@ -68,7 +72,13 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        if(Input.GetKey(interactKey) && hitBed) {
+            Debug.Log("Player has slept");
+            //fade to black
+            //teleport to day spawn
+            //fade back in
+            DayPhase();
+        }
     }
 
     public void Heal(float health) {
@@ -118,7 +128,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator teleportToNightSpawnCoroutine() {
-        Debug.Log("Teleporting to night spawn");
+        // Debug.Log("Teleporting to night spawn");
         movement.disabled = true;
         yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = nightSpawnPt;
@@ -146,13 +156,14 @@ public class PlayerController : MonoBehaviour {
     IEnumerator TransitionToDay() {
         dayNightController.UpdateSkyDay();
         itemManager.despawn();
+        StartCoroutine(AudioManager.StartFade(cellTrack, 3f, 0f));
         StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
         yield return new WaitForSeconds(3f);
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 
     public void NightPhase() {
-        Debug.Log("Night phase");
+        // Debug.Log("Night phase");
 
         StartCoroutine(TransitionToNight());
     }
@@ -170,12 +181,26 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void DayPhase() {
-        Debug.Log("Day phase");
+        // Debug.Log("Day phase");
+
+        playerDied = false;
+        bedText.SetActive(false);
+        hitBed = false;
+        StartCoroutine(teleportToDaySpawnCoroutine());
+        isDay = true;
+        isNight = false;
         StartCoroutine(TransitionToDay());
+        //tell wave manager to start spawning enemies
     }
 
     void OnTriggerEnter(Collider other) {
         string otherTransformName = other.transform.name;
+
+        if(other.tag == "Bed" && isNight) {
+            // Debug.Log("Player has hit bed");
+            bedText.SetActive(true); //asks player if they want to sleep
+            hitBed = true;
+        }
 
         if (other.tag == "Zone") {
             if(otherTransformName == "CellZone" && isNight) {
