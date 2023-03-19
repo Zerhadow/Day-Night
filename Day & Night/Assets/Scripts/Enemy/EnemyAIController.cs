@@ -278,7 +278,7 @@ public class EnemyAIController : MonoBehaviour
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
             animator.SetBool("Attack",true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
 
             if(!enemyDead && meleePrefab != null) {
