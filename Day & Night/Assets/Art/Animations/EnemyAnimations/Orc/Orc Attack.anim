@@ -233,84 +233,7 @@ AnimationClip:
     path: MoveScaleRot_01/MoveScaleRot_02/MoveScaleRot_03/c_COG_CC/c_hips_GRP/c_hips_cc
   m_CompressedRotationCurves: []
   m_EulerCurves: []
-  m_PositionCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.3504079, y: 0.5335443, z: 0.25612983}
-        inSlope: {x: -1.7763568e-15, y: 3.5527137e-15, z: -0.000000108009395}
-        outSlope: {x: -1.7763568e-15, y: 3.5527137e-15, z: -0.000000108009395}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1.4166666
-        value: {x: -0.3504079, y: 0.5335443, z: 0.12190156}
-        inSlope: {x: -7.6129654e-16, y: 1.5225931e-15, z: -0.00000010800951}
-        outSlope: {x: -1.7763535e-15, y: 3.552707e-15, z: -0.0000004812325}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 2.5
-        value: {x: -0.3504079, y: 0.5335443, z: 0.25612983}
-        inSlope: {x: -7.6129876e-16, y: 1.5225975e-15, z: 0.00000010732032}
-        outSlope: {x: -7.6129876e-16, y: 1.5225975e-15, z: 0.00000010732032}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: MoveScaleRot_01/MoveScaleRot_02/MoveScaleRot_03/c_COG_CC/r_arm_grp/r_arm_cc
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.46168318, y: 0.45572868, z: -0.01320317}
-        inSlope: {x: 0.0000010032429, y: 0.0000042288534, z: 0.0000000609131}
-        outSlope: {x: 0.0000010032429, y: 0.0000042288534, z: 0.0000000609131}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.6666667
-        value: {x: -0.47777367, y: 0.47630936, z: -0.084947765}
-        inSlope: {x: 0.0000010032425, y: 0.09261238, z: -0.000000019468018}
-        outSlope: {x: -0.0000008835893, y: 0.09260866, z: -0.0000016629066}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 1.125
-        value: {x: -0.30558643, y: 0.6338798, z: 0.40960902}
-        inSlope: {x: 0.00000029351722, y: 0.0000063117704, z: 0.0000016231837}
-        outSlope: {x: 0.0000029439725, y: -0.00000021659943, z: 0.0000029678408}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 2.5
-        value: {x: -0.46168318, y: 0.45572868, z: -0.01320317}
-        inSlope: {x: 0.0000013091127, y: -0.000003486354, z: -0.0000005444017}
-        outSlope: {x: 0.0000013091127, y: -0.000003486354, z: -0.0000005444017}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: MoveScaleRot_01/MoveScaleRot_02/MoveScaleRot_03/c_COG_CC/l_arm_grp/l_arm_cc
+  m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -321,20 +244,6 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - serializedVersion: 2
-      path: 1328289680
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 294877720
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
     - serializedVersion: 2
       path: 700913691
       attribute: 2
@@ -367,7 +276,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
