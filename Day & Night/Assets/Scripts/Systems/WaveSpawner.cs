@@ -181,4 +181,12 @@ public class WaveSpawner : MonoBehaviour {
         totalEnemies = enemies.Length;
         // Debug.Log("Total enemies: " + totalEnemies);
     }
+
+    private void OnDrawGizmos() {
+        //draw spawn points
+        Gizmos.color = Color.red;
+        foreach(Transform spawnPoint in spawnPoints) {
+            Gizmos.DrawWireSphere(spawnPoint.position, 1f);
+        }
+    }
 }

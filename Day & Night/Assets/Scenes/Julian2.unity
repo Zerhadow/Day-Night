@@ -1190,7 +1190,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPt1 (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2372,7 +2372,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPt1 (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5288,7 +5288,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPt1 (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6429,6 +6429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -24.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: velocityMargin
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5391194508305942965, guid: c70021db6dbf55f40aa7ecf16645fb03,
         type: 3}
@@ -8289,7 +8294,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPt1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

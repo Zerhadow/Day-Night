@@ -23,11 +23,12 @@ public class PlayerController : MonoBehaviour {
     void Awake() {
         currHP = maxHP;
         movement = GetComponent<Movement>();
+        StartCoroutine(teleportToDaySpawnCoroutine());
     }
 
     // Start is called before the first frame update
     void Start() {
-        gameObject.transform.position = daySpawnPt;
+        
     }
 
     // Update is called once per frame
@@ -76,6 +77,15 @@ public class PlayerController : MonoBehaviour {
         movement.disabled = true;
         yield return new WaitForSeconds(0.1f);
         gameObject.transform.position = nightSpawnPt;
+        yield return new WaitForSeconds(0.1f);
+        movement.disabled = false;
+    }
+
+    IEnumerator teleportToDaySpawnCoroutine() {
+        Debug.Log("Teleporting to day spawn");
+        movement.disabled = true;
+        yield return new WaitForSeconds(0.1f);
+        gameObject.transform.position = daySpawnPt;
         yield return new WaitForSeconds(0.1f);
         movement.disabled = false;
     }
