@@ -30,8 +30,12 @@ public class FireballCaster : MonoBehaviour
 
     }
 
-    IEnumerator cast()
+    void OnEnable()
     {
+        canCast = true;
+    }
+
+    IEnumerator cast() {
         canCast = false;
         yield return new WaitForSeconds(startTime);
         if (!isActiveAndEnabled)
