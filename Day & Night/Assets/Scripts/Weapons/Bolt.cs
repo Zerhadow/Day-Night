@@ -7,6 +7,7 @@ public class Bolt : MonoBehaviour
     [SerializeField] GameObject hitEffect = null;
     [SerializeField] float lifeSpan = 5f;
     [SerializeField] float velocity = 20f;
+    [SerializeField] float damage = 10f;
     [SerializeField] bool destroyOnImpact = true;
 
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class Bolt : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Enemy") {
             Debug.Log("Hit enemy");
-            other.GetComponent<EnemyController>().TakeDamage(10);
+            other.GetComponent<EnemyController>().TakeDamage(damage);
         }
     }
 }

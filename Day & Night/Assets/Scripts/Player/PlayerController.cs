@@ -6,6 +6,11 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour {
 
+    [SerializeField] WaveSpawner waveSpawner;
+    [SerializeField] ItemManager itemManager;
+    [SerializeField] WeaponManager weaponManager;
+    [SerializeField] DayNightController dayNightController;
+
     public float maxHP = 100;
     public float currHP = 100;
     public float damage = 10;
@@ -22,7 +27,6 @@ public class PlayerController : MonoBehaviour {
     public bool playerDied = false;
 
     Movement movement;
-    PotionSpawn potionSpawner;
     public bool inCell = false;
 
     AudioSource dayTrack;
@@ -43,7 +47,6 @@ public class PlayerController : MonoBehaviour {
         movement = GetComponent<Movement>();
 
         StartCoroutine(teleportToDaySpawnCoroutine());
-        potionSpawner = GameObject.Find("Potion Spawner").GetComponent<PotionSpawn>();
 
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
@@ -90,6 +93,7 @@ public class PlayerController : MonoBehaviour {
         isNight = true;
         // Fade scene to black, then start night phase
         playerDied = true;
+        weaponManager.clear();
         StartCoroutine(FadeOut());
         StartCoroutine(teleportToNightSpawnCoroutine());
         currHP = 1; //player has to go and find health pickups
@@ -128,12 +132,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator TransitionToNight() {
+        dayNightController.UpdateSkyNight();
+        itemManager.spawn();
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
         yield return new WaitForSeconds(3f);
         StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
     }
 
     IEnumerator TransitionToDay() {
+        dayNightController.UpdateSkyDay();
+        itemManager.despawn();
         StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
         yield return new WaitForSeconds(3f);
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
@@ -142,7 +150,6 @@ public class PlayerController : MonoBehaviour {
     public void NightPhase() {
         Debug.Log("Night phase");
 
-        potionSpawner.SpawnPotion();
         StartCoroutine(TransitionToNight());
     }
 
@@ -160,7 +167,6 @@ public class PlayerController : MonoBehaviour {
 
     public void DayPhase() {
         Debug.Log("Day phase");
-        // potionSpawner.DestroyPotion();
         StartCoroutine(TransitionToDay());
     }
 
@@ -170,9 +176,9 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Zone") {
             if(otherTransformName == "CellZone" && isNight) {
                 if(!inCell) {
-                Debug.Log("Player has entered zone");
-                inCell = true;
-                StartCoroutine(TransitionToAndFromCell(inCell));
+                    Debug.Log("Player has entered zone");
+                    inCell = true;
+                    StartCoroutine(TransitionToAndFromCell(inCell));
                 } else {
                     Debug.Log("Player has left cell");
                     inCell = false;
