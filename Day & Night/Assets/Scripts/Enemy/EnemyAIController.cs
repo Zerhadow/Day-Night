@@ -36,6 +36,9 @@ public class EnemyAIController : MonoBehaviour
     [Header("Navigation")]
     GameObject player;
     NavMeshAgent agent;
+
+    [Header("Melee")]
+    [SerializeField] GameObject meleePrefab;
     
     [Header("Ranged")]
     [SerializeField] GameObject _projectilePrefab;
@@ -49,7 +52,11 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField] GameObject[] _flyEmpties = new GameObject[8];
     [SerializeField] GameObject _projectileGravityPrefab;
     [SerializeField] GameObject _smoke;
-    
+
+    [Header("Boss")]
+    [SerializeField] GameObject bossMeleePrefab;
+    [SerializeField] GameObject bossProjectilePrefab;
+
     // assigns player and accesses
     void Awake() {
         player = GameObject.Find("Player");
@@ -132,27 +139,35 @@ public class EnemyAIController : MonoBehaviour
         }
 
         if(enemy == Enemy.Boss) {
-            if(distance < 7f || enemyDead) {
-                if(!takingdamage){
-                    animator.SetBool("Idle",true);
-                    animator.SetBool("Walk",false);
+            if(distance < 6f) {
+                if(!takingdamage) {
+                    // animator.SetBool("Idle",true);
+                    // animator.SetBool("Walk",false);
                 }
 
                 LookAtPlayer();
-                agent.isStopped = true;
 
-                if(enemyDead == false) {
-                    if(delay == false) {
-                        if(!takingdamage) {
-                            StartCoroutine(BossAttack());
-                        }
+                if(distance < 5.2f || !enemyDead) {
+                    agent.isStopped = true;
+                    //LookAtPlayer();
+                    if(!enemyDead) {
+                        if(!delay && !takingdamage)
+                        StartCoroutine(BossAttack());
                     }
                 }
-            } else if(!takingdamage) { // if player is not within 7 meters, navigate towards player
+            } else if(distance > 6f) {
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
-                animator.SetBool("Idle",false);
-                animator.SetBool("Walk",true);
+                // animator.SetBool("Idle",false);
+                // animator.SetBool("Walk",true);
+            }
+
+            if(enemyDead == false) {
+                if(delay == false) {
+                    if(!takingdamage) {
+                        StartCoroutine(BossAttack());
+                    }
+                }
             }
         }
 
@@ -241,28 +256,24 @@ public class EnemyAIController : MonoBehaviour
     // MeleeAttack deals damage to the player. Still needs a PhysicsOverlap bool so that
     // it does not do damage to the player if they can escape in time.
     IEnumerator MeleeAttack() {
-        if(takingdamage == false) {
-            delay = true;
+        delay = true;
+        yield return new WaitForSeconds(1f);
+
+        if(!takingdamage) {
             agent.isStopped = true;
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
             animator.SetBool("Attack",true);
+            yield return new WaitForSeconds(1f);
 
-            if(range) {
-                if(!enemyDead){
-                    // orcAttack.Play();
-                }
+
+            if(!enemyDead && meleePrefab != null) {
+                meleePrefab.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+                meleePrefab.SetActive(false);
             }
 
-            yield return new WaitForSeconds(0.4f);
-
-            if(range) {
-                if(!takingdamage) {
-                    if(!enemyDead) {
-                        // make player take damage
-                    }
-                }
-            }
+            // orcAttack.Play();
 
             yield return new WaitForSeconds(0.1f);
             animator.SetBool("Attack",false);
@@ -278,6 +289,7 @@ public class EnemyAIController : MonoBehaviour
     IEnumerator RangedAttack() {
         delay = true;
         yield return new WaitForSeconds(1f);
+
         if(!takingdamage) {
             animator.SetBool("Attack",true);
 
@@ -333,30 +345,43 @@ public class EnemyAIController : MonoBehaviour
     //  BossAttack deals damage to the player. Still needs a PhysicsOverlap bool so that
     //  it does not do damage to the player if they can escape in time.
     IEnumerator BossAttack() {
-        //if(takingdamage == false){
-            delay = true;
-            agent.isStopped = true;
+        delay = true;
+        agent.isStopped = true;
+        
+        yield return new WaitForSeconds(1.2f);
+        // bossAttack.Play();
+
+        if(!takingdamage) {
             // animator.SetBool("Walk",false);
             // animator.SetBool("Idle",false);
             // animator.SetBool("Attack",true);
-            yield return new WaitForSeconds(1.2f);
-            // bossAttack.Play();
+            yield return new WaitForSeconds(1f);
+            // animator.SetBool("Attack",true);
 
-            if(range) {
-                if(!enemyDead) {
-                    // have player take damage
+            if(!enemyDead && bossMeleePrefab != null && bossProjectilePrefab != null) {
+                if((distance >= 10f && distance <= 20f)) {
+                    Debug.Log("Boss Attack Range");
+                    Instantiate(bossProjectilePrefab,transform.position,transform.rotation);
+                } 
+                
+                if((distance < 5.2f)) {
+                    Debug.Log("Boss Attack Melee");
+                    bossMeleePrefab.SetActive(true);
+                    yield return new WaitForSeconds(2.5f);
+                    bossMeleePrefab.SetActive(false);
                 }
             }
-            //if(distance > 7f){
-            // animator.SetBool("Walk",false);
-            // animator.SetBool("Idle",true);
-            // animator.SetBool("Attack",false);
-            // animator.Play("Idle");
-       // }
-            yield return new WaitForSeconds(2.5f);
-            agent.isStopped = false;
-            yield return new WaitForSeconds(0.5f);
-            delay = false;
+        }
+
+        //if(distance > 7f){
+        // animator.SetBool("Walk",false);
+        // animator.SetBool("Idle",true);
+        // animator.SetBool("Attack",false);
+        // animator.Play("Idle");
+        yield return new WaitForSeconds(2.5f);
+        agent.isStopped = false;
+        yield return new WaitForSeconds(0.5f);
+        delay = false;
     }
 
     public void enemyDamaged() {

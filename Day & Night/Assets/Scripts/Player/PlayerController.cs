@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour {
                 }
             } else if(otherTransformName == "TrainingZone") {
                 Debug.Log("Player has entered training zone");
-                zoneText.text = "Training Zone";
+                // zoneText.text = "Training Zone";
                 StartCoroutine(FadeOutText());
             } else if(otherTransformName == "StagingZone") {
                 Debug.Log("Player has entered Staging Yard");

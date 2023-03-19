@@ -6862,7 +6862,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -7191,7 +7191,8 @@ MonoBehaviour:
     enemy:
     - {fileID: 7261908484544811614, guid: 8098779b20a4717439f65773f1e16ab1, type: 3}
     - {fileID: 3259649918514436280, guid: 93a229358ebda4048a76339dd091bc08, type: 3}
-    enemies: 0200000002000000
+    - {fileID: 7261908484544811614, guid: 451c440b490278d4389c0b64c8b33b80, type: 3}
+    enemies: 000000000000000001000000
     rate: 0.25
   highestWave: 1
   valueText: {fileID: 0}
