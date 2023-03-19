@@ -42,6 +42,7 @@ public class WaveSpawner : MonoBehaviour {
 
     PlayerController player;
 
+    DayNightController dayNightController;
     AudioFile dayTrack;
     AudioFile nightTrack;
 
@@ -55,12 +56,15 @@ public class WaveSpawner : MonoBehaviour {
         valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
         valueText.text = "Wave: " + waveCount.ToString();
         waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
+        dayNightController = GameObject.Find("DayNightController").GetComponent<DayNightController>();
     }
 
     void Start() {
         if(spawnPoints.Length == 0) {
             Debug.Log("No spawn points referenced");
         }
+
+        dayNightController.UpdateSkyDay();
 
         waveCountdown = timeBetweenWaves;
     }
@@ -97,6 +101,7 @@ public class WaveSpawner : MonoBehaviour {
             isDay = false;
             despawnAllEnemies();
             nextWave = 0; //reset wave count
+            dayNightController.UpdateSkyNight();
         }
     }
 
@@ -132,6 +137,9 @@ public class WaveSpawner : MonoBehaviour {
     IEnumerator SpawnWave(Wave wave) {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
+
+        if(nextWave != 0)
+            dayNightController.UpdateSkyNextWave();
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
