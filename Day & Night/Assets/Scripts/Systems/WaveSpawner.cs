@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour {
     public enum SpawnState {SPAWNING, WAITING, COUNTING};
@@ -18,6 +20,11 @@ public class WaveSpawner : MonoBehaviour {
     public Wave[] waves;
     private int nextWave = 0;
 
+    public TMP_Text valueText;
+    public int waveCount;
+    Slider waveSlider;
+    int totalEnemies;
+
     public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
@@ -30,9 +37,26 @@ public class WaveSpawner : MonoBehaviour {
     ItemManager itemManager;
     WeaponManager weaponManager;
 
+    public bool isDay = true;
+    public bool isNight = false;
+
+    PlayerController player;
+
+    // DayNightController dayNightController;
+    AudioFile dayTrack;
+    AudioFile nightTrack;
+
     void Awake() {
+        waveCount = nextWave + 1;
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        // dayTrack = GameObject.Find("DayTrack").GetComponent<AudioFile>();
+        // nightTrack = GameObject.Find("NightTrack").GetComponent<AudioFile>();
+        valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
+        valueText.text = "Wave: " + waveCount.ToString();
+        waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
+        // dayNightController = GameObject.Find("DayNightController").GetComponent<DayNightController>();
     }
 
     void Start() {
@@ -40,13 +64,15 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("No spawn points referenced");
         }
 
+        // dayNightController.UpdateSkyDay();
+
         waveCountdown = timeBetweenWaves;
     }
 
     void Update() {
         if(state == SpawnState.WAITING) {
             //check if enemies are still alive
-            if(!EnemyIsAlive()) {
+            if(!EnemyIsAlive() && isDay) {
                 Debug.Log("Wave completed");
                 WaveCompleted();
             } else {
@@ -56,11 +82,26 @@ public class WaveSpawner : MonoBehaviour {
 
         if(waveCountdown <= 0) {
             if(state != SpawnState.SPAWNING) {
-                //start spawning wave
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                if(isDay) //start spawning waves
+                    StartCoroutine(SpawnWave(waves[nextWave]));
             }
         } else {
             waveCountdown -=Time.deltaTime;
+        }
+
+        GetTotalEnemies();
+    }
+
+    void FixedUpdate() {
+
+        waveSlider.value = totalEnemies;
+
+        if(player.playerDied) {
+            isNight = true;
+            isDay = false;
+            despawnAllEnemies();
+            nextWave = 0; //reset wave count
+            // dayNightController.UpdateSkyNight();
         }
     }
 
@@ -81,8 +122,7 @@ public class WaveSpawner : MonoBehaviour {
     bool EnemyIsAlive() {
         searchCountdown -= Time.deltaTime;
 
-        if(searchCountdown <= 0f) {
-
+        if(searchCountdown <= 0f && isDay) {
             if(GameObject.FindGameObjectWithTag("Enemy") == null) {
                 Debug.Log("No enemies alive");
                 return false;
@@ -98,7 +138,8 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        //UI there?
+        // if(nextWave != 0)
+            // dayNightController.UpdateSkySkyNextWave();
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
@@ -111,6 +152,8 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("Enemy and enemy count arrays are not the same length");
         }
 
+        waveSlider.maxValue = totalEnemies;
+
         state = SpawnState.WAITING;
 
         yield break;
@@ -122,5 +165,20 @@ public class WaveSpawner : MonoBehaviour {
         //spawn enemy; change from random
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+    }
+
+    void despawnAllEnemies() {
+        // Debug.Log("Despawning all enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) {
+            Destroy(enemy);
+        }
+    }
+
+    void GetTotalEnemies() {
+        // Debug.Log("Getting total enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        totalEnemies = enemies.Length;
+        // Debug.Log("Total enemies: " + totalEnemies);
     }
 }

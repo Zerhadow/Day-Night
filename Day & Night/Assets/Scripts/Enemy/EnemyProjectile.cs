@@ -29,7 +29,7 @@ public class EnemyProjectile : MonoBehaviour {
         if(other.tag != "Enemy") {
             if(other.tag == "Player"){
                 // Debug.Log("Player takes damage");
-                playerController.TakeDamage(10); //range enemies do 10 damage
+                playerController.TakeDamage(25); //range enemies do 10 damage
             }
             // Instantiate(_particleCollide,transform.position,Quaternion.identity);
             Destroy(this.gameObject);
