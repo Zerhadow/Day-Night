@@ -91,6 +91,8 @@ public class DayNightController : MonoBehaviour
     // Updates the sky light to the next wave settings
     public void UpdateSkyNextWave()
     {
+        Debug.Log("Next Wave light");
+
         if (_waveLight.Length > index + 1)
         {
             col1 = _waveLight[index];
@@ -108,6 +110,8 @@ public class DayNightController : MonoBehaviour
     // Updates the skybox and sky light to day settings
     public void UpdateSkyDay()
     {
+        // Debug.Log("Start of Day light");
+
         RenderSettings.skybox = _daySky;
         _skyLight.color = _waveLight[0];
         _skyLight.transform.eulerAngles = _waveAngle[0];
@@ -126,6 +130,8 @@ public class DayNightController : MonoBehaviour
     // Updates the skybox and sky light to night settings
     public void UpdateSkyNight()
     {
+        // Debug.Log("Night light");
+
         RenderSettings.skybox = _nightSky;
         _skyLight.color = _nightLight;
         _skyLight.transform.eulerAngles = _nightAngle;

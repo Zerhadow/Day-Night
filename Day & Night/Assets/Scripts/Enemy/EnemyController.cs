@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour {
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currHP -= damage;
 
-        Debug.Log(transform.name + " takes " + damage + " damage.");
+        // Debug.Log(transform.name + " takes " + damage + " damage.");
 
         if (currHP <= 0) {
             Die();

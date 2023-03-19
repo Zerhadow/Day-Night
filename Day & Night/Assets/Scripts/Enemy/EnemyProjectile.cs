@@ -23,6 +23,10 @@ public class EnemyProjectile : MonoBehaviour {
     // Start is called before the first frame update
     void Update()
     {
+        if(transform.position.magnitude > 750.0f) {
+            Destroy(this.gameObject);
+        }
+
         transform.Translate(Vector3.forward*_projectileSpeed*Time.deltaTime);
     }
 

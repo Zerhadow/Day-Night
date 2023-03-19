@@ -6,10 +6,10 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] WaveSpawner waveSpawner;
     [SerializeField] ItemManager itemManager;
-    [SerializeField] WeaponManager weaponManager;
-    [SerializeField] DayNightController dayNightController;
+    WeaponManager weaponManager;
+    GameObject directionalLight;
+    DayNightController dayNightController;
 
     public float maxHP = 100;
     public float currHP = 100;
@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
 
+    GameObject nightSpawnPtObj;
     Vector3 daySpawnPt = new Vector3(0,0.59f,0);
-    Vector3 nightSpawnPt = new Vector3(0,0.59f,-25);
+    Vector3 nightSpawnPt;
 
     public bool playerDied = false;
 
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(teleportToDaySpawnCoroutine());
 
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        directionalLight = GameObject.Find("Directional Light");
+        dayNightController = directionalLight.GetComponent<DayNightController>();
+
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
         nightTrack = GameObject.Find("NightTrack").GetComponent<AudioSource>();
@@ -55,6 +60,8 @@ public class PlayerController : MonoBehaviour {
         // zoneAreaObj = GameObject.Find("ZoneArea");
         // zoneText = GameObject.Find("ZoneText").GetComponent<TMP_Text>();
         // zoneAnimator = GameObject.Find("ZoneText").GetComponent<Animator>();
+        nightSpawnPtObj = GameObject.Find("NightSpawnPt");
+        nightSpawnPt = nightSpawnPtObj.transform.position;
     }
 
     // Start is called before the first frame update
@@ -80,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 
         healthBar.SetHealth(currHP);
 
-        Debug.Log(transform.name + " takes " + damage + " damage.");
+        // Debug.Log(transform.name + " takes " + damage + " damage.");
 
         if (currHP <= 0) {
             Die();

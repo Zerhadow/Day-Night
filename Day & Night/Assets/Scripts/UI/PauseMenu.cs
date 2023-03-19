@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class PauseMenu : MonoBehaviour
@@ -19,10 +20,8 @@ public class PauseMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
+            if (GameIsPaused) {
                 Resume();
             }
             else
@@ -33,9 +32,11 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
+        Cursor.visible = true;
         pauseMenuUI.SetActive(false);
         waveCountObj.SetActive(true);
         playerHPBar.SetActive(true);
+
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -59,6 +60,6 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
         
         //if webGL build, go to title screen
-        // SceneManagemer.LoadScene("MainMenu");
+        // SceneManagemer.LoadScene("Title Menu");
     }
 }
