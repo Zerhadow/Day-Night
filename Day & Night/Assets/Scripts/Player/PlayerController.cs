@@ -166,11 +166,6 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 
-    public void NightPhase() {
-        // Debug.Log("Night phase");
-        StartCoroutine(TransitionToNight());
-    }
-
     public IEnumerator TransitionToAndFromCell(bool inCell) {
         if(inCell) { // enters cell
             StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
@@ -181,6 +176,11 @@ public class PlayerController : MonoBehaviour {
             yield return new WaitForSeconds(3f);
             StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
         }
+    }
+
+    public void NightPhase() {
+        // Debug.Log("Night phase");
+        StartCoroutine(TransitionToNight());
     }
 
     public void DayPhase() {
@@ -194,6 +194,10 @@ public class PlayerController : MonoBehaviour {
         isNight = false;
         StartCoroutine(TransitionToDay());
         //tell wave manager to start spawning enemies
+    }
+
+    public void BeatGame() {
+        
     }
 
     void OnTriggerEnter(Collider other) {

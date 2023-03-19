@@ -120,8 +120,8 @@ public class WaveSpawner : MonoBehaviour {
         waveCountdown = timeBetweenWaves;
 
         if(nextWave + 1 > waves.Length - 1) {
-            nextWave = 0;
-            Debug.Log("All waves complete! Looping. . .");
+            Debug.Log("Completed all waves");
+            player.BeatGame();
         } else {
             nextWave++;
             if(nextWave > highestWave)
