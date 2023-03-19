@@ -17,6 +17,11 @@ public class Fireball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(transform.position.magnitude > 750.0f) {
+            Destroy(this.gameObject);
+        }
+
         transform.position += transform.forward * velocity * Time.deltaTime;
     }
 
@@ -29,7 +34,7 @@ public class Fireball : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Enemy") {
             Debug.Log("Hit enemy");
-            other.GetComponent<EnemyController>().TakeDamage(10);
+            other.GetComponent<EnemyController>().TakeDamage(20);
         }
 
         if(other.tag != "Player")
