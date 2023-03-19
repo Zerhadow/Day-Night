@@ -120,7 +120,7 @@ public class EnemyAIController : MonoBehaviour
                 LookAtPlayer();
             }
 
-            if(distance < 4.2f || !enemyDead) {
+            if(distance < 4.2f && !enemyDead) {
                 agent.isStopped = true;
                 //LookAtPlayer();
                 if(enemyDead == false) {
@@ -259,7 +259,7 @@ public class EnemyAIController : MonoBehaviour
         delay = true;
         yield return new WaitForSeconds(1f);
 
-        if(!takingdamage) {
+        if(!takingdamage && !enemyDead) {
             agent.isStopped = true;
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
@@ -390,6 +390,7 @@ public class EnemyAIController : MonoBehaviour
     
     //playes corrresponding death animation and sound
     public void Death() {
+        // agent.isStopped = true;
         agent.updatePosition = false;
         enemyDead = true;
         agent.enabled = false;
@@ -409,7 +410,6 @@ public class EnemyAIController : MonoBehaviour
             // flyingDeath.Play();
         }
 
-        // agent.isStopped = true;
         StartCoroutine(OnDeath());
     }
     
