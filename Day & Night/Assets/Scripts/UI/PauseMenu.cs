@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
-    public GameObject waveCountObj;
+    GameObject waveCountObj;
     GameObject playerHPBar;
 
     void Awake() {

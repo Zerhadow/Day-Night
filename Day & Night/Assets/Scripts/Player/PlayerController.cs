@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float damage = 10;
 
     public HUDHealth healthBar;
+    GameObject playerHPBar;
 
     public Animator transition;
     public float transitionTime = 1f;
@@ -27,9 +30,18 @@ public class PlayerController : MonoBehaviour {
     AudioSource cellTrack;
     AudioManager audioManager;
 
+    GameObject zoneAreaObj;
+    TMP_Text zoneText;
+    Animator zoneAnimator;
+
+    public bool isDay = true;
+    public bool isNight = false;
+
     void Awake() {
         currHP = maxHP;
+        playerHPBar = GameObject.Find("PlayerHPBar");
         movement = GetComponent<Movement>();
+
         StartCoroutine(teleportToDaySpawnCoroutine());
         potionSpawner = GameObject.Find("Potion Spawner").GetComponent<PotionSpawn>();
 
@@ -37,6 +49,9 @@ public class PlayerController : MonoBehaviour {
         dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
         nightTrack = GameObject.Find("NightTrack").GetComponent<AudioSource>();
         cellTrack = GameObject.Find("CellTrack").GetComponent<AudioSource>();
+        // zoneAreaObj = GameObject.Find("ZoneArea");
+        // zoneText = GameObject.Find("ZoneText").GetComponent<TMP_Text>();
+        // zoneAnimator = GameObject.Find("ZoneText").GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -71,6 +86,8 @@ public class PlayerController : MonoBehaviour {
 
     void Die() {
         Debug.Log(transform.name + " fainted.");
+        isDay = false;
+        isNight = true;
         // Fade scene to black, then start night phase
         playerDied = true;
         StartCoroutine(FadeOut());
@@ -84,6 +101,12 @@ public class PlayerController : MonoBehaviour {
         transition.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(transitionTime);
+    }
+
+    IEnumerator FadeOutText() {
+        zoneAnimator.SetTrigger("FadeInText");
+
+        yield return new WaitForSeconds(1.5f);
     }
 
     IEnumerator teleportToNightSpawnCoroutine() {
@@ -118,14 +141,9 @@ public class PlayerController : MonoBehaviour {
 
     public void NightPhase() {
         Debug.Log("Night phase");
+
         potionSpawner.SpawnPotion();
         StartCoroutine(TransitionToNight());
-    }
-
-    public void DayPhase() {
-        Debug.Log("Day phase");
-        // potionSpawner.DestroyPotion();
-        StartCoroutine(TransitionToDay());
     }
 
     public IEnumerator TransitionToAndFromCell(bool inCell) {
@@ -140,16 +158,51 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void DayPhase() {
+        Debug.Log("Day phase");
+        // potionSpawner.DestroyPotion();
+        StartCoroutine(TransitionToDay());
+    }
+
     void OnTriggerEnter(Collider other) {
+        string otherTransformName = other.transform.name;
+
         if (other.tag == "Zone") {
-            if(!inCell) {
+            if(otherTransformName == "CellZone" && isNight) {
+                if(!inCell) {
                 Debug.Log("Player has entered zone");
                 inCell = true;
                 StartCoroutine(TransitionToAndFromCell(inCell));
-            } else {
-                Debug.Log("Player has left cell");
-                inCell = false;
-                StartCoroutine(TransitionToAndFromCell(inCell));
+                } else {
+                    Debug.Log("Player has left cell");
+                    inCell = false;
+                    StartCoroutine(TransitionToAndFromCell(inCell));
+                }
+            } else if(otherTransformName == "TrainingZone") {
+                Debug.Log("Player has entered training zone");
+                zoneText.text = "Training Zone";
+                StartCoroutine(FadeOutText());
+            } else if(otherTransformName == "StagingZone") {
+                Debug.Log("Player has entered Staging Yard");
+                zoneText.text = "Staging Yard";
+            } else if(otherTransformName == "CourtyardZone") {
+                Debug.Log("Player has entered Courtyard");
+                zoneText.text = "Courtyard";
+            } else if(otherTransformName == "StorageZone") {
+                Debug.Log("Player has entered storage zone");
+                zoneText.text = "Storage Zone";
+            } else if(otherTransformName == "TowerZone") {
+                Debug.Log("Player has entered tower zone");
+                zoneText.text = "Tower Zone";
+            } else if(otherTransformName == "MainHallZone") {
+                Debug.Log("Player has entered main hall zone");
+                zoneText.text = "Main Hall";
+            } else if(otherTransformName == "GarrisonZone") {
+                Debug.Log("Player has entered garrison zone");
+                zoneText.text = "Garrison";
+            } else if(otherTransformName == "DungeonZone") {
+                Debug.Log("Player has entered dungeon zone");
+                zoneText.text = "Dungeon";
             }
         }
     }
