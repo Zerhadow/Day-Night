@@ -672,6 +672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewBanner
       objectReference: {fileID: 0}
+    - target: {fileID: 3566390031902043909, guid: 225d07fc78ff4074cad88cd5068127d3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5757c2c9e7bbe5e45972b00c827a52d4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 225d07fc78ff4074cad88cd5068127d3, type: 3}
 --- !u!4 &5088347269829301651 stripped
