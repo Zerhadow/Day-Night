@@ -89,6 +89,7 @@ public class WaveSpawner : MonoBehaviour {
 
     void FixedUpdate() {
 
+        waveCount = nextWave + 1;
         waveSlider.value = totalEnemies;
 
         if(player.playerDied) {
@@ -134,6 +135,8 @@ public class WaveSpawner : MonoBehaviour {
     IEnumerator SpawnWave(Wave wave) {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
+
+        valueText.text = "Wave: " + waveCount.ToString();
 
         // if(nextWave != 0)
             // dayNightController.UpdateSkySkyNextWave();

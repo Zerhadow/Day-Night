@@ -45,6 +45,6 @@ public class EnemyController : MonoBehaviour {
     void Die() {
         Debug.Log(transform.name + " died.");
         enemyAI.Death();
-        Destroy(this.gameObject,3f);
+        Destroy(this.gameObject,1f);
     }
 }
