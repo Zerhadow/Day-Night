@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {   
     public float maxHP = 100;
@@ -10,13 +11,14 @@ public class EnemyController : MonoBehaviour {
     public float attackRange = 1;
     public float moveSpeed = 1;
 
-    public HUDHealth healthBar;
-
     EnemyAIController enemyAI;
+
+    Slider slider;
 
     void Awake() {
         currHP = maxHP;
         enemyAI = GetComponent<EnemyAIController>();
+        slider = GetComponent<Slider>();
     }
 
     // Start is called before the first frame update
@@ -33,8 +35,6 @@ public class EnemyController : MonoBehaviour {
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currHP -= damage;
 
-        healthBar.SetHealth(currHP);
-
         Debug.Log(transform.name + " takes " + damage + " damage.");
 
         if (currHP <= 0) {
@@ -45,6 +45,6 @@ public class EnemyController : MonoBehaviour {
     void Die() {
         Debug.Log(transform.name + " died.");
         enemyAI.Death();
-        // Destroy(this.gameObject,3f);
+        Destroy(this.gameObject,3f);
     }
 }

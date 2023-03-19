@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour {
     public enum SpawnState {SPAWNING, WAITING, COUNTING};
@@ -17,6 +19,12 @@ public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
+    public int highestWave = 1;
+
+    public TMP_Text valueText;
+    public int waveCount;
+    Slider waveSlider;
+    int totalEnemies;
 
     public Transform[] spawnPoints;
 
@@ -27,10 +35,41 @@ public class WaveSpawner : MonoBehaviour {
 
     private SpawnState state = SpawnState.COUNTING;
 
+    ItemManager itemManager;
+    WeaponManager weaponManager;
+
+    public bool isDay = true;
+    public bool isNight = false;
+
+    PlayerController player;
+
+    // DayNightController dayNightController;
+    AudioSource dayTrack;
+    AudioSource nightTrack;
+    AudioManager audioManager;
+
+    void Awake() {
+        waveCount = nextWave + 1;
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
+        nightTrack = GameObject.Find("NightTrack").GetComponent<AudioSource>();
+        valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
+        valueText.text = "Wave: " + waveCount.ToString();
+        waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
+        // dayNightController = GameObject.Find("DayNightController").GetComponent<DayNightController>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
     void Start() {
         if(spawnPoints.Length == 0) {
             Debug.Log("No spawn points referenced");
         }
+
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
+
+        // dayNightController.UpdateSkyDay();
 
         waveCountdown = timeBetweenWaves;
     }
@@ -38,7 +77,7 @@ public class WaveSpawner : MonoBehaviour {
     void Update() {
         if(state == SpawnState.WAITING) {
             //check if enemies are still alive
-            if(!EnemyIsAlive()) {
+            if(!EnemyIsAlive() && isDay) {
                 Debug.Log("Wave completed");
                 WaveCompleted();
             } else {
@@ -48,11 +87,27 @@ public class WaveSpawner : MonoBehaviour {
 
         if(waveCountdown <= 0) {
             if(state != SpawnState.SPAWNING) {
-                //start spawning wave
-                StartCoroutine(SpawnWave(waves[nextWave]));
+                if(isDay) //start spawning waves
+                    StartCoroutine(SpawnWave(waves[nextWave]));
             }
         } else {
             waveCountdown -=Time.deltaTime;
+        }
+
+        GetTotalEnemies();
+    }
+
+    void FixedUpdate() {
+
+        waveSlider.value = totalEnemies;
+
+        if(player.playerDied) {
+            isNight = true;
+            isDay = false;
+            despawnAllEnemies();
+            nextWave = 0; //reset wave count
+            // dayNightController.UpdateSkyNight();
+            StartCoroutine(TransitionToNight());
         }
     }
 
@@ -66,14 +121,16 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("All waves complete! Looping. . .");
         } else {
             nextWave++;
+            if(nextWave > highestWave)
+                highestWave = nextWave;
+            itemManager.setSpawnSet(nextWave);
         }
     }
 
     bool EnemyIsAlive() {
         searchCountdown -= Time.deltaTime;
 
-        if(searchCountdown <= 0f) {
-
+        if(searchCountdown <= 0f && isDay) {
             if(GameObject.FindGameObjectWithTag("Enemy") == null) {
                 Debug.Log("No enemies alive");
                 return false;
@@ -89,6 +146,9 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
+        // if(nextWave != 0)
+            // dayNightController.UpdateSkySkyNextWave();
+
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
                 for(int j = 0; j < wave.enemies[i]; j++) {
@@ -99,6 +159,8 @@ public class WaveSpawner : MonoBehaviour {
         } else {
             Debug.Log("Enemy and enemy count arrays are not the same length");
         }
+
+        waveSlider.maxValue = totalEnemies;
 
         state = SpawnState.WAITING;
 
@@ -111,5 +173,40 @@ public class WaveSpawner : MonoBehaviour {
         //spawn enemy; change from random
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(_enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+    }
+
+    void despawnAllEnemies() {
+        // Debug.Log("Despawning all enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies) {
+            Destroy(enemy);
+        }
+    }
+
+    void GetTotalEnemies() {
+        // Debug.Log("Getting total enemies");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        totalEnemies = enemies.Length;
+        // Debug.Log("Total enemies: " + totalEnemies);
+    }
+
+    private void OnDrawGizmos() {
+        //draw spawn points
+        Gizmos.color = Color.red;
+        foreach(Transform spawnPoint in spawnPoints) {
+            Gizmos.DrawWireSphere(spawnPoint.position, 1f);
+        }
+    }
+
+    IEnumerator TransitionToNight() {
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
+    }
+
+    IEnumerator TransitionToDay() {
+        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 }

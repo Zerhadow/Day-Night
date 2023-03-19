@@ -26,8 +26,12 @@ public class Fireball : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Enemy") {
+            Debug.Log("Hit enemy");
+            other.GetComponent<EnemyController>().TakeDamage(20);
+        }
+
         if(other.tag != "Player")
         {
             Instantiate(explosion, transform.position, Quaternion.identity);

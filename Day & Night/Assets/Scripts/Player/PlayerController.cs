@@ -10,24 +10,36 @@ public class PlayerController : MonoBehaviour {
 
     public HUDHealth healthBar;
 
+    public Animator transition;
+    public float transitionTime = 1f;
+
+    Vector3 daySpawnPt = new Vector3(0,0.59f,0);
+    Vector3 nightSpawnPt = new Vector3(0,0.59f,-25);
+
+    public bool playerDied = false;
+
+    Movement movement;
+    PotionSpawn potionSpawner;
+
     void Awake() {
         currHP = maxHP;
+        movement = GetComponent<Movement>();
+        StartCoroutine(teleportToDaySpawnCoroutine());
+        potionSpawner = GameObject.Find("Potion Spawner").GetComponent<PotionSpawn>();
     }
 
     // Start is called before the first frame update
     void Start() {
-        
+
     }
 
     // Update is called once per frame
     void Update() {
-        
+
     }
 
-    public void Heal(float health)
-    {
-        if (health > 0)
-        {
+    public void Heal(float health) {
+        if (health > 0) {
             currHP += health;
             currHP = Mathf.Clamp(currHP, 0, maxHP);
         }
@@ -49,6 +61,40 @@ public class PlayerController : MonoBehaviour {
     void Die() {
         Debug.Log(transform.name + " fainted.");
         // Fade scene to black, then start night phase
-        //health reset to 1
+        playerDied = true;
+        StartCoroutine(FadeOut());
+        StartCoroutine(teleportToNightSpawnCoroutine());
+        currHP = 1; //player has to go and find health pickups
+        //teleport to location to night spawn
+        NightPhase();
+    }
+
+    IEnumerator FadeOut() {
+        transition.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(transitionTime);
+    }
+
+    IEnumerator teleportToNightSpawnCoroutine() {
+        Debug.Log("Teleporting to night spawn");
+        movement.disabled = true;
+        yield return new WaitForSeconds(0.1f);
+        gameObject.transform.position = nightSpawnPt;
+        yield return new WaitForSeconds(0.1f);
+        movement.disabled = false;
+    }
+
+    IEnumerator teleportToDaySpawnCoroutine() {
+        Debug.Log("Teleporting to day spawn");
+        movement.disabled = true;
+        yield return new WaitForSeconds(0.1f);
+        gameObject.transform.position = daySpawnPt;
+        yield return new WaitForSeconds(0.1f);
+        movement.disabled = false;
+    }
+
+    public void NightPhase() {
+        Debug.Log("Night phase");
+        potionSpawner.SpawnPotion();
     }
 }

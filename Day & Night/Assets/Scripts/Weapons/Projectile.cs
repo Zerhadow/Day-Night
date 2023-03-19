@@ -9,6 +9,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] float velocity = 0f;
     [SerializeField] bool destroyOnImpact = true;
 
+    EnemyController enemy;
+
+    void Awake() {
+        enemy = GetComponent<EnemyController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +33,10 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            Debug.Log("Hit player");
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(enemy.damage);
+        }
     }
 }

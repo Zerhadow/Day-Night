@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour {
             s.source.clip = s.audioClip;
             s.source.volume = s.volume;
         }
+
     }
 
     public static void PlaySound(string name) {
@@ -52,5 +53,17 @@ public class AudioManager : MonoBehaviour {
         } else {
             s.source.Stop();
         }
+    }
+
+    public static IEnumerator StartFade(AudioSource music, float duration, float targetVol) {
+        float currentTime = 0;
+        float start = music.volume;
+
+        while(currentTime < duration){
+            currentTime += Time.deltaTime;
+            music.volume = Mathf.Lerp(start, targetVol, currentTime/duration);
+            yield return null;
+        }
+        yield break;
     }
 }

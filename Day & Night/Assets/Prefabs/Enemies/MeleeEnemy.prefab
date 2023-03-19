@@ -345,7 +345,6 @@ MonoBehaviour:
   attackSpeed: 1
   attackRange: 1
   moveSpeed: 1
-  healthBar: {fileID: 0}
 --- !u!1 &7567928877358818372
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +541,6 @@ MonoBehaviour:
   attackSpeed: 1
   attackRange: 1
   moveSpeed: 1
-  healthBar: {fileID: 0}
 --- !u!1 &9204483283006930792
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +624,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 4660603173762025763}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
