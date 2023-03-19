@@ -19,7 +19,7 @@ public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
-    public int highestWave = 1;
+    public int highestWave = 0;
 
     public TMP_Text valueText;
     public int waveCount;
@@ -36,7 +36,6 @@ public class WaveSpawner : MonoBehaviour {
     private SpawnState state = SpawnState.COUNTING;
 
     ItemManager itemManager;
-    WeaponManager weaponManager;
 
     public bool isDay = true;
     public bool isNight = false;
@@ -48,7 +47,6 @@ public class WaveSpawner : MonoBehaviour {
     void Awake() {
         waveCount = nextWave + 1;
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
         valueText.text = "Wave: " + waveCount.ToString();
@@ -114,7 +112,7 @@ public class WaveSpawner : MonoBehaviour {
             nextWave++;
             if(nextWave > highestWave)
                 highestWave = nextWave;
-            itemManager.setSpawnSet(nextWave);
+            itemManager.setSpawnSet(highestWave);
         }
     }
 
