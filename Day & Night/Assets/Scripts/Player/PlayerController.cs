@@ -19,16 +19,18 @@ public class PlayerController : MonoBehaviour {
     public bool playerDied = false;
 
     Movement movement;
+    PotionSpawn potionSpawner;
 
     void Awake() {
         currHP = maxHP;
         movement = GetComponent<Movement>();
         StartCoroutine(teleportToDaySpawnCoroutine());
+        potionSpawner = GameObject.Find("Potion Spawner").GetComponent<PotionSpawn>();
     }
 
     // Start is called before the first frame update
     void Start() {
-        
+
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(teleportToNightSpawnCoroutine());
         currHP = 1; //player has to go and find health pickups
         //teleport to location to night spawn
+        NightPhase();
     }
 
     IEnumerator FadeOut() {
@@ -88,5 +91,10 @@ public class PlayerController : MonoBehaviour {
         gameObject.transform.position = daySpawnPt;
         yield return new WaitForSeconds(0.1f);
         movement.disabled = false;
+    }
+
+    public void NightPhase() {
+        Debug.Log("Night phase");
+        potionSpawner.SpawnPotion();
     }
 }

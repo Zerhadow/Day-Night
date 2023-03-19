@@ -19,6 +19,7 @@ public class WaveSpawner : MonoBehaviour {
 
     public Wave[] waves;
     private int nextWave = 0;
+    public int highestWave = 1;
 
     public TMP_Text valueText;
     public int waveCount;
@@ -115,6 +116,8 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("All waves complete! Looping. . .");
         } else {
             nextWave++;
+            if(nextWave > highestWave)
+                highestWave = nextWave;
             itemManager.setSpawnSet(nextWave);
         }
     }
