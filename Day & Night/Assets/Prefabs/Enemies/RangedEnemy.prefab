@@ -345,7 +345,6 @@ MonoBehaviour:
   attackSpeed: 1
   attackRange: 1
   moveSpeed: 1
-  healthBar: {fileID: 0}
 --- !u!1 &3259649918514436258
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +359,8 @@ GameObject:
   - component: {fileID: 3259649918514436261}
   - component: {fileID: 3259649918514436260}
   - component: {fileID: 3259649918514436281}
+  - component: {fileID: -1429768826371691664}
+  - component: {fileID: 3121318150285461066}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -508,6 +509,39 @@ MonoBehaviour:
   - {fileID: 0}
   _projectileGravityPrefab: {fileID: 0}
   _smoke: {fileID: 0}
+--- !u!114 &-1429768826371691664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259649918514436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15521e887c98eac47a3bcce1b3850894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currHP: 100
+  damage: 10
+  attackSpeed: 1
+  attackRange: 1
+  moveSpeed: 1
+--- !u!114 &3121318150285461066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259649918514436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53e8d848041d0f489a6cde08d0c24fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarUI: {fileID: 1876050175740276779}
+  slider: {fileID: 4798038349559844935}
+  enemy: {fileID: 3259649918514436258}
 --- !u!1 &8693665970819467745
 GameObject:
   m_ObjectHideFlags: 0

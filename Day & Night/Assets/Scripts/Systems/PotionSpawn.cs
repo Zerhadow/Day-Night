@@ -26,10 +26,14 @@ public class PotionSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(SpawnPotion());
+
     }
 
-    IEnumerator SpawnPotion() {
+    public void SpawnPotion() {
+        StartCoroutine(SpawnPotionEnum());
+    }
+
+    IEnumerator SpawnPotionEnum() {
         Debug.Log("Spawning potions");
 
         for(int i = 0; i < potion.numOfPotions; i++) {
@@ -41,5 +45,13 @@ public class PotionSpawn : MonoBehaviour
     void Spawn() {
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
         Instantiate(potion.potion, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+    }
+
+    private void OnDrawGizmos() {
+        //draw spawn points
+        Gizmos.color = Color.blue;
+        foreach(Transform spawnPoint in spawnPoints) {
+            Gizmos.DrawWireSphere(spawnPoint.position, 1f);
+        }
     }
 }
