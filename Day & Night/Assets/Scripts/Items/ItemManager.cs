@@ -9,7 +9,7 @@ public class ItemManager : MonoBehaviour
     GameObject currentSet;
 
     int numSets= 0;
-    int setIndex;
+    int setIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class ItemManager : MonoBehaviour
 
     public void setSpawnSet(int index)
     {
-        if (index < numSets && index > -1)
+        if (index < numSets && index > -1 && index > setIndex)
             setIndex = index;
     }
 }
