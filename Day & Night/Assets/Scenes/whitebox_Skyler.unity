@@ -74458,7 +74458,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a776a776e00fed247b55f42d484b8010, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84082,6 +84082,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagicLamp_Crystal (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1121905782583913979, guid: cfc769aa79871b649b4189fbe1c830e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a3f8c7635e4ae54ea19b05dd43e6682, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc769aa79871b649b4189fbe1c830e8, type: 3}
 --- !u!1001 &1777154430
