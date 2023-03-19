@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
 
     float gravity = 0f;
     float acceleration = 0f;
-    Vector3 velocity2 = Vector3.zero;
+    public Vector3 velocity2 = Vector3.zero;
     Vector3 velocityZ = Vector3.zero;
     Vector3 jumpVector = Vector3.zero;
 
