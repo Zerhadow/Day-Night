@@ -21,16 +21,17 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("Audio")]
-    [SerializeField] AudioClip _orcAtt;
-    private AudioSource orcAttack;
-    [SerializeField] AudioClip _rangeAtt;
-    private AudioSource rangeAttack;
+    private AudioManager audioManager;
+    //[SerializeField] AudioClip _orcAtt;
+    //private AudioSource orcAttack;
+    //[SerializeField] AudioClip _rangeAtt;
+    //private AudioSource rangeAttack;
     // public AudioSource flyingAttack;
     // public AudioSource bossAttack;
-    [SerializeField] AudioClip _orcDth;
-    private AudioSource orcDeath;
-    [SerializeField] AudioClip _rangeDth;
-    private AudioSource rangeDeath;
+    //[SerializeField] AudioClip _orcDth;
+    //private AudioSource orcDeath;
+    //[SerializeField] AudioClip _rangeDth;
+    //private AudioSource rangeDeath;
     // public AudioSource flyingDeath;
     // public AudioSource bossDeath;
 
@@ -69,14 +70,16 @@ public class EnemyAIController : MonoBehaviour
 
     // calls populate enemy if enemy enum is flying
     void Start() {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         //assign clips to AudioSources
+        /*orcAttack = gameObject.AddComponent(AudioSource);
         orcAttack.clip = _orcAtt;
         rangeAttack.clip = _rangeAtt;
         orcDeath.clip = _orcDth;
-        rangeDeath.clip = _rangeDth;
+        rangeDeath.clip = _rangeDth;*/
 
 
-        if(currentEnemy == Enemy.Flying) {
+        if (currentEnemy == Enemy.Flying) {
             PopulateFlyingArray();
         }
 
@@ -285,7 +288,7 @@ public class EnemyAIController : MonoBehaviour
                 meleePrefab.SetActive(false);
             }
 
-            orcAttack.Play();
+            audioManager.PlaySound("OrcAttack");
 
             yield return new WaitForSeconds(0.1f);
             animator.SetBool("Attack",false);
@@ -317,7 +320,7 @@ public class EnemyAIController : MonoBehaviour
                         Instantiate(_projectilePrefab,_shotpoint.transform.position,transform.rotation);
                     }
 
-                    rangeAttack.Play();
+                    audioManager.PlaySound("RangeAttack");
                 }
 
                 yield return new WaitForSeconds(0.1f);
@@ -410,10 +413,10 @@ public class EnemyAIController : MonoBehaviour
         // animator.SetBool("Death",true);
 
         if(currentEnemy == Enemy.Melee) {
-            orcDeath.Play();
+            audioManager.PlaySound("OrcDeath");
         }
         if(currentEnemy == Enemy.Ranged) {
-            rangeDeath.Play();
+            audioManager.PlaySound("RangeDeath");
         }
         if(currentEnemy == Enemy.Boss) {
             // bossDeath.Play();

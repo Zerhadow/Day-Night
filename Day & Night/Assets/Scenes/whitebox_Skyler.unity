@@ -23730,7 +23730,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146d85f231a08034f973268d0bbf1193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioFiles: []
+  instance: {fileID: 0}
+  audioFiles:
+  - audioName: OrcAttack
+    audioClip: {fileID: 8300000, guid: 2e8ceddccc052b94f814729487d0b4c5, type: 3}
+    volume: 0
+    pitchVariation: 0
+    source: {fileID: 0}
+  - audioName: RangeAttack
+    audioClip: {fileID: 8300000, guid: e2c6ba6677dfd1749800c1dc236454da, type: 3}
+    volume: 0
+    pitchVariation: 0
+    source: {fileID: 0}
+  - audioName: OrcDeath
+    audioClip: {fileID: 8300000, guid: 9515c26a61eb53d428cc5392490d753f, type: 3}
+    volume: 0
+    pitchVariation: 0
+    source: {fileID: 0}
+  - audioName: RangeDeath
+    audioClip: {fileID: 8300000, guid: 1445ff1c534bcd641934cf71d2f84fbf, type: 3}
+    volume: 0
+    pitchVariation: 0
+    source: {fileID: 0}
 --- !u!1 &422963774
 GameObject:
   m_ObjectHideFlags: 0
@@ -40624,13 +40645,13 @@ MonoBehaviour:
     enemy:
     - {fileID: 7261908484544811614, guid: 8098779b20a4717439f65773f1e16ab1, type: 3}
     - {fileID: 3259649918514436280, guid: 93a229358ebda4048a76339dd091bc08, type: 3}
-    enemies: 0a00000005000000
+    enemies: 0100000001000000
     rate: 0.5
   - name: Wave 3
     enemy:
     - {fileID: 7261908484544811614, guid: 8098779b20a4717439f65773f1e16ab1, type: 3}
     - {fileID: 3259649918514436280, guid: 93a229358ebda4048a76339dd091bc08, type: 3}
-    enemies: 0a0000000a000000
+    enemies: 0200000002000000
     rate: 0.25
   - name: Wave 4
     enemy:
