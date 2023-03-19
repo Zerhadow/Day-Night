@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     AudioManager audioManager;
 
     public GameObject bedText;
+    public GameObject nightTalkText;
     GameObject zoneAreaObj;
     TMP_Text zoneText;
     Animator zoneAnimator;
@@ -151,6 +152,9 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
         yield return new WaitForSeconds(3f);
         StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
+        nightTalkText.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        nightTalkText.SetActive(false);
     }
 
     IEnumerator TransitionToDay() {
@@ -164,7 +168,6 @@ public class PlayerController : MonoBehaviour {
 
     public void NightPhase() {
         // Debug.Log("Night phase");
-
         StartCoroutine(TransitionToNight());
     }
 
