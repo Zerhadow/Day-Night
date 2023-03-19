@@ -29,7 +29,7 @@ public class Fireball : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Enemy") {
             Debug.Log("Hit enemy");
-            other.GetComponent<EnemyController>().TakeDamage(10);
+            other.GetComponent<EnemyController>().TakeDamage(20);
         }
 
         if(other.tag != "Player")
