@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     public float transitionTime = 1f;
 
     [SerializeField] Vector3 daySpawnPt = new Vector3(0,0.59f,0);
-    [SerializeField] Vector3 nightSpawnPt = new Vector3(13.87,0.59f,116.61);
+    [SerializeField] Vector3 nightSpawnPt = new Vector3(13.87f,0.59f,116.61f);
 
     public bool playerDied = false;
 
@@ -59,8 +59,6 @@ public class PlayerController : MonoBehaviour {
         // zoneAreaObj = GameObject.Find("ZoneArea");
         // zoneText = GameObject.Find("ZoneText").GetComponent<TMP_Text>();
         // zoneAnimator = GameObject.Find("ZoneText").GetComponent<Animator>();
-        nightSpawnPtObj = GameObject.Find("NightSpawnPt");
-        nightSpawnPt = nightSpawnPtObj.transform.position;
     }
 
     // Start is called before the first frame update
