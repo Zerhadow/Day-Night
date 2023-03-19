@@ -44,30 +44,22 @@ public class WaveSpawner : MonoBehaviour {
     PlayerController player;
 
     // DayNightController dayNightController;
-    AudioSource dayTrack;
-    AudioSource nightTrack;
-    AudioManager audioManager;
 
     void Awake() {
         waveCount = nextWave + 1;
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
-        nightTrack = GameObject.Find("NightTrack").GetComponent<AudioSource>();
         valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
         valueText.text = "Wave: " + waveCount.ToString();
         waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
         // dayNightController = GameObject.Find("DayNightController").GetComponent<DayNightController>();
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start() {
         if(spawnPoints.Length == 0) {
             Debug.Log("No spawn points referenced");
         }
-
-        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
 
         // dayNightController.UpdateSkyDay();
 
@@ -107,7 +99,6 @@ public class WaveSpawner : MonoBehaviour {
             despawnAllEnemies();
             nextWave = 0; //reset wave count
             // dayNightController.UpdateSkyNight();
-            StartCoroutine(TransitionToNight());
         }
     }
 
@@ -196,17 +187,5 @@ public class WaveSpawner : MonoBehaviour {
         foreach(Transform spawnPoint in spawnPoints) {
             Gizmos.DrawWireSphere(spawnPoint.position, 1f);
         }
-    }
-
-    IEnumerator TransitionToNight() {
-        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
-        yield return new WaitForSeconds(3f);
-        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
-    }
-
-    IEnumerator TransitionToDay() {
-        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
-        yield return new WaitForSeconds(3f);
-        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 }

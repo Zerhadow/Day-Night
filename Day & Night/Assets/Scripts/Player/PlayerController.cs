@@ -20,17 +20,28 @@ public class PlayerController : MonoBehaviour {
 
     Movement movement;
     PotionSpawn potionSpawner;
+    public bool inCell = false;
+
+    AudioSource dayTrack;
+    AudioSource nightTrack;
+    AudioSource cellTrack;
+    AudioManager audioManager;
 
     void Awake() {
         currHP = maxHP;
         movement = GetComponent<Movement>();
         StartCoroutine(teleportToDaySpawnCoroutine());
         potionSpawner = GameObject.Find("Potion Spawner").GetComponent<PotionSpawn>();
+
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        dayTrack = GameObject.Find("DayTrack").GetComponent<AudioSource>();
+        nightTrack = GameObject.Find("NightTrack").GetComponent<AudioSource>();
+        cellTrack = GameObject.Find("CellTrack").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
     void Start() {
-
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 
     // Update is called once per frame
@@ -93,8 +104,53 @@ public class PlayerController : MonoBehaviour {
         movement.disabled = false;
     }
 
+    IEnumerator TransitionToNight() {
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
+    }
+
+    IEnumerator TransitionToDay() {
+        StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
+    }
+
     public void NightPhase() {
         Debug.Log("Night phase");
         potionSpawner.SpawnPotion();
+        StartCoroutine(TransitionToNight());
+    }
+
+    public void DayPhase() {
+        Debug.Log("Day phase");
+        // potionSpawner.DestroyPotion();
+        StartCoroutine(TransitionToDay());
+    }
+
+    public IEnumerator TransitionToAndFromCell(bool inCell) {
+        if(inCell) { // enters cell
+            StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 0f));
+            yield return new WaitForSeconds(3f);
+            StartCoroutine(AudioManager.StartFade(cellTrack, 3f, 1f));
+        } else { // exits cell
+            StartCoroutine(AudioManager.StartFade(cellTrack, 3f, 0f));
+            yield return new WaitForSeconds(3f);
+            StartCoroutine(AudioManager.StartFade(nightTrack, 3f, 1f));
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "Zone") {
+            if(!inCell) {
+                Debug.Log("Player has entered zone");
+                inCell = true;
+                StartCoroutine(TransitionToAndFromCell(inCell));
+            } else {
+                Debug.Log("Player has left cell");
+                inCell = false;
+                StartCoroutine(TransitionToAndFromCell(inCell));
+            }
+        }
     }
 }
