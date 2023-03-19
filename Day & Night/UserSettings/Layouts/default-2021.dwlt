@@ -203,7 +203,11 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< HEAD
   controlID: 106
+=======
+  controlID: 179
+>>>>>>> skyler-whitebox
 --- !u!114 &6
 >>>>>>> main
 MonoBehaviour:
@@ -238,7 +242,11 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
+<<<<<<< HEAD
   controlID: 73
+=======
+  controlID: 124
+>>>>>>> skyler-whitebox
 --- !u!114 &7
 >>>>>>> main
 MonoBehaviour:
@@ -274,7 +282,11 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
+<<<<<<< HEAD
   controlID: 74
+=======
+  controlID: 125
+>>>>>>> skyler-whitebox
 --- !u!114 &8
 >>>>>>> main
 MonoBehaviour:
@@ -294,6 +306,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 384.5
     height: 633.5
   m_MinSize: {x: 201, y: 221}
@@ -304,6 +317,12 @@ MonoBehaviour:
     height: 769
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    width: 306.5
+    height: 556.5
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> skyler-whitebox
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -686,6 +705,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_Position:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: -0.30219245, y: 0.58000493, z: 8.858418}
     speed: 2
     m_Value: {x: -0.30219245, y: 0.58000493, z: 8.858418}
@@ -694,6 +714,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -39.82364, y: -6.4018016, z: -10.779081}
 >>>>>>> main
+=======
+    m_Target: {x: 2.1367342, y: 5.243146, z: -14.431578}
+    speed: 2
+    m_Value: {x: 2.1367342, y: 5.243146, z: -14.431578}
+>>>>>>> skyler-whitebox
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -741,6 +766,7 @@ MonoBehaviour:
     m_gridOpacity: 0.5
   m_Rotation:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: -0.291378, y: 0.029264225, z: -0.008918119, w: -0.9561192}
     speed: 2
     m_Value: {x: -0.29137784, y: 0.029264212, z: -0.008918114, w: -0.9561187}
@@ -757,6 +783,15 @@ MonoBehaviour:
     speed: 2
     m_Value: 17.540764
 >>>>>>> main
+=======
+    m_Target: {x: 0.0015039113, y: -0.9938353, z: -0.014380878, w: 0.11719129}
+    speed: 2
+    m_Value: {x: 0.0016777411, y: -0.99303603, z: -0.012879411, w: 0.11709227}
+  m_Size:
+    m_Target: 3.283788
+    speed: 2
+    m_Value: 3.283788
+>>>>>>> skyler-whitebox
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -774,7 +809,11 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
+<<<<<<< HEAD
   m_LastSceneViewRotation: {x: -0.291378, y: 0.029264225, z: -0.008918119, w: -0.9561192}
+=======
+  m_LastSceneViewRotation: {x: 0.24471518, y: 0.071688734, z: -0.01599288, w: 0.9678771}
+>>>>>>> skyler-whitebox
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -820,6 +859,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
       m_SelectedIDs: ac690000
@@ -830,6 +870,12 @@ MonoBehaviour:
       m_LastClickedID: 0
       m_ExpandedIDs: 00ecffffa0f4ffffe0faffff
 >>>>>>> main
+=======
+      scrollPos: {x: 0, y: 589.5}
+      m_SelectedIDs: 1a2a0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6234fbff06d2fbff22a7fcff9ef9fcffaef9fcffb0f9fcff580fffff5a0fffff5c0fffff7a64ffff7e64ffff8a82ffff8e82ffff46c7ffff54c7ffffaadfffffacdfffff52e1ffff0ae7ffff0ee7ffff32fbffff5e680000f0680000466d00005e6d00008a6d000020730000247300002a750000ca760000
+>>>>>>> skyler-whitebox
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1032,23 +1078,32 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Scripts/UI
 =======
     - Assets/Prefabs/Enemies
 >>>>>>> main
+=======
+    - Assets/Scripts
+>>>>>>> skyler-whitebox
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - Assets/Scripts/UI
+=======
+  - Assets/Scripts
+>>>>>>> skyler-whitebox
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/obosaaimuyo/Unity Projects/SpringJam 2023/Day-Night/Day
     & Night
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs: ac690000
     m_LastClickedID: 27052
@@ -1065,6 +1120,12 @@ MonoBehaviour:
     m_LastClickedID: 28630
     m_ExpandedIDs: 00000000286b0000b86c0000bc6c000000ca9a3b
 >>>>>>> main
+=======
+    scrollPos: {x: 0, y: 89.5}
+    m_SelectedIDs: ba8d0000
+    m_LastClickedID: 36282
+    m_ExpandedIDs: 00000000928d0000b08d0000b68d0000388e000000ca9a3b
+>>>>>>> skyler-whitebox
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1093,10 +1154,14 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000006a690000
 =======
     m_ExpandedIDs: 00000000286b0000
 >>>>>>> main
+=======
+    m_ExpandedIDs: 00000000928d0000
+>>>>>>> skyler-whitebox
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
