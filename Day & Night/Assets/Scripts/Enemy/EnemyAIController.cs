@@ -57,10 +57,20 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField] GameObject bossMeleePrefab;
     [SerializeField] GameObject bossProjectilePrefab;
 
+    GameObject currentEnemyObject;
+    EnemyController enemyController;
+    EnemyProjectile enemyProjectile;
+
+    [Header("Damge per Type")]
+    public int rangeDamage = 25;
+    public int bossDamage = 25;
+
     // assigns player and accesses
     void Awake() {
         player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
+        currentEnemyObject = this.gameObject;
+        enemyController = currentEnemyObject.GetComponent<EnemyController>();
     }
 
     // calls populate enemy if enemy enum is flying
@@ -301,8 +311,10 @@ public class EnemyAIController : MonoBehaviour
                     animator.Play("Attack");
                     yield return new WaitForSeconds(1f);
 
-                    if(!enemyDead)
+                    if(!enemyDead) {
+                        
                         Instantiate(_projectilePrefab,_shotpoint.transform.position,transform.rotation);
+                    }
 
                     // rangeAttack.Play();
                 }

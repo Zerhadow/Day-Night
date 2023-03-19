@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour {
     // [SerializeField] GameObject _particleCollide;
     GameObject player;
     PlayerController playerController;
+    public int rangeDamage;
     
     void Awake() {
         player = GameObject.Find("Player");
@@ -29,7 +30,7 @@ public class EnemyProjectile : MonoBehaviour {
         if(other.tag != "Enemy") {
             if(other.tag == "Player"){
                 // Debug.Log("Player takes damage");
-                playerController.TakeDamage(25); //range enemies do 10 damage
+                playerController.TakeDamage(rangeDamage); //range enemies do 10 damage
             }
             // Instantiate(_particleCollide,transform.position,Quaternion.identity);
             Destroy(this.gameObject);
