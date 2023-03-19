@@ -19,9 +19,9 @@ public class DayNightController : MonoBehaviour
     [SerializeField] Vector3 _eclipseAngle;
 
     [Header("Light Intensities")]
-    [SerializeField] float _dayIntense;
-    [SerializeField] float _nightIntense;
-    [SerializeField] float _eclipseIntense;
+    [SerializeField] float _dayIntense = 2.0f;
+    [SerializeField] float _nightIntense = 2.0f;
+    [SerializeField] float _eclipseIntense = 2.0f;
 
     [Header("Skyboxes")]
     [SerializeField] Material _daySky;
@@ -29,8 +29,8 @@ public class DayNightController : MonoBehaviour
     [SerializeField] Material _eclipseSky;
 
     [Header("Sun/Moon")]
-    [SerializeField] Transform _sun;
-    [SerializeField] Transform _eclipse;
+    [SerializeField] GameObject _sun;
+    [SerializeField] GameObject _eclipse;
     [SerializeField] Vector3 _rotation;
 
     private float t = 0f; 
@@ -97,7 +97,7 @@ public class DayNightController : MonoBehaviour
             col2 = _waveLight[index + 1];
             angle1 = _waveAngle[index];
             angle2 = _waveAngle[index + 1];
-            sun1 = _sun.eulerAngles;
+            sun1 = _sun.transform.eulerAngles;
             sun2 = sun1 + _rotation;
             index++;
             t = 0;
@@ -112,8 +112,15 @@ public class DayNightController : MonoBehaviour
         _skyLight.color = _waveLight[0];
         _skyLight.transform.eulerAngles = _waveAngle[0];
         _sun.transform.eulerAngles = new Vector3(-10, 1, -6);
-        index = 0;
+        
         _skyLight.shadows = LightShadows.Soft;
+        _skyLight.intensity = _dayIntense;
+
+        _eclipse.SetActive(false);
+        _sun.SetActive(true);
+        
+        index = 0;
+        
     }
 
     // Updates the skybox and sky light to night settings
@@ -122,8 +129,15 @@ public class DayNightController : MonoBehaviour
         RenderSettings.skybox = _nightSky;
         _skyLight.color = _nightLight;
         _skyLight.transform.eulerAngles = _nightAngle;
-        _sun.transform.eulerAngles = new Vector3(-90, -90, 0);
+        _sun.transform.eulerAngles = new Vector3(-190, 1, 0);
+
         _skyLight.shadows = LightShadows.Soft;
+        _skyLight.intensity = _nightIntense;
+
+        _eclipse.SetActive(false);
+        _sun.SetActive(true);
+
+
         index = 100;
     }
 
@@ -133,7 +147,16 @@ public class DayNightController : MonoBehaviour
         RenderSettings.skybox = _nightSky;
         _skyLight.color = _eclipseLight;
         _skyLight.transform.eulerAngles = _eclipseAngle;
+
         _skyLight.shadows = LightShadows.None;
+        _skyLight.intensity = _eclipseIntense;
+
+        Transform tempSun = _sun.transform;
+        _eclipse.transform.position = tempSun.position;
+        _eclipse.transform.rotation = tempSun.rotation;
+        _eclipse.SetActive(true);
+        _sun.SetActive(false);
+
         index = 100;
     }
 }
