@@ -21,9 +21,8 @@ public class PlayerController : MonoBehaviour {
     public Animator transition;
     public float transitionTime = 1f;
 
-    GameObject nightSpawnPtObj;
-    Vector3 daySpawnPt = new Vector3(0,0.59f,0);
-    Vector3 nightSpawnPt;
+    [SerializeField] Vector3 daySpawnPt = new Vector3(0,0.59f,0);
+    [SerializeField] Vector3 nightSpawnPt = new Vector3(13.87,0.59f,116.61);
 
     public bool playerDied = false;
 

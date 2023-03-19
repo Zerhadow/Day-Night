@@ -116514,6 +116514,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.59
       objectReference: {fileID: 0}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: timeToMax
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: maxVelocity
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: velocityMargin
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5391194508305942965, guid: c70021db6dbf55f40aa7ecf16645fb03,
         type: 3}
       propertyPath: m_Name
