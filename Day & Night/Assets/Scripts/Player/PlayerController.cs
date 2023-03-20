@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour {
     public float currHP = 100;
     public float damage = 10;
 
+    [SerializeField] AudioClip _playerDmg; 
+    private AudioSource playerDamage; 
+    [SerializeField] AudioClip _playerDie; 
+    private AudioSource playerDeath;
+
     public HUDHealth healthBar;
     GameObject playerHPBar;
 
@@ -79,6 +84,10 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        playerDamage = gameObject.AddComponent<AudioSource>(); 
+        playerDamage.clip = _playerDmg; 
+        playerDeath = gameObject.AddComponent<AudioSource>(); 
+        playerDeath.clip = _playerDie; 
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 
@@ -104,6 +113,7 @@ public class PlayerController : MonoBehaviour {
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currHP -= damage;
 
+        playerDamage.Play(); 
         healthBar.SetHealth(currHP);
 
         // Debug.Log(transform.name + " takes " + damage + " damage.");
@@ -115,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 
     void Die() {
         Debug.Log(transform.name + " fainted.");
+        playerDeath.Play(); 
         isDay = false;
         isNight = true;
         // Fade scene to black, then start night phase
