@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 33992a1dd0e7c554291ef557ce963cf9
+guid: c2236d37f7f9f5f42bf55d5d81ee29af
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 0e5d446862e55f54a96ce83d2f80daf6, type: 2}
+      name: body
+    second: {fileID: 2100000, guid: ff1455ce035458f44b5fbc1b2fec6b66, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: minotaur_lambert2
-    second: {fileID: 2100000, guid: 0e5d446862e55f54a96ce83d2f80daf6, type: 2}
+      name: wings
+    second: {fileID: 2100000, guid: fe2e39d75f49a7d49987e903ad8bc479, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
