@@ -13,22 +13,12 @@ public class Blunderbuss : MonoBehaviour
     [SerializeField] float verticalSpread = 5f;
     [SerializeField] int numberOfPellets = 10;
 
-    [SerializeField] AudioClip _blunderShot;
-    private AudioSource blunderShot;
-    [SerializeField] AudioClip _blunderLoad;
-    private AudioSource blunderLoad;
-
     bool canShoot = true;
     Camera cam = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        blunderShot = gameObject.AddComponent<AudioSource>();
-        blunderShot.clip = _blunderShot;
-        blunderLoad = gameObject.AddComponent<AudioSource>();
-        blunderLoad.clip = _blunderLoad;
-
         cam = transform.parent.GetComponent<Camera>();
     }
 
@@ -54,7 +44,6 @@ public class Blunderbuss : MonoBehaviour
         if (!isActiveAndEnabled)
         {
             canShoot = true;
-            blunderLoad.Play();
         }
         else
         {
@@ -67,8 +56,6 @@ public class Blunderbuss : MonoBehaviour
             else
                 target = ray.GetPoint(100);
             Vector3 direction = target - firePoint.position;
-
-            blunderShot.Play();
 
             Vector3 axis = Vector3.Cross(direction, Vector3.up);
             for(int i = 0; i < numberOfPellets; i++)

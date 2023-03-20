@@ -14,11 +14,6 @@ public class Movement : MonoBehaviour
     [SerializeField] float airResistanceCoefficient = 0.5f;
     [SerializeField] float velocityMargin = 0.01f;
 
-    [SerializeField] AudioClip _playerWalk;
-    private AudioSource playerWalk;
-    [SerializeField] AudioClip _playerJump;
-    private AudioSource playerJump;
-
     CharacterController controller;
 
     float gravity = 0f;
@@ -45,11 +40,6 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerWalk = gameObject.AddComponent<AudioSource>();
-        playerWalk.clip = _playerWalk;
-        playerJump = gameObject.AddComponent<AudioSource>();
-        playerJump.clip = _playerJump;
-
         float tempDuration = jumpDuration / 2;
         groundMask = LayerMask.GetMask("Ground");
         controller = GetComponent<CharacterController>();
@@ -112,11 +102,6 @@ public class Movement : MonoBehaviour
                 velocity2 += velocity2.normalized * -currentAcc * Time.deltaTime;
         }
 
-        if (velocity2.magnitude!=0 && grounded)
-        {
-            playerWalk.Play();
-        }
-
         // Move the player
         Quaternion xRotation = Quaternion.AngleAxis(cam.GetYRotation(), Vector3.up);
         controller.Move(xRotation * velocity2 * Time.deltaTime);
@@ -131,7 +116,6 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(JUMP) && canJump)
         {
             velocityZ = jumpVector;
-            playerJump.Play();
         }
         else
         {
