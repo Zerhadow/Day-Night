@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/whitebox_Skyler.unity
     guid: 5cd3814d55fabc043b965c8e18d6168a
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: 8e7e9c67c761e424182224941379374a
   m_configObjects: {}

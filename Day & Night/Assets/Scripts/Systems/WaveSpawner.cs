@@ -101,8 +101,12 @@ public class WaveSpawner : MonoBehaviour {
             isNight = true;
             isDay = false;
             despawnAllEnemies();
-            nextWave = 0; //reset wave count
             dayNightController.UpdateSkyNight();
+        } else {
+            isNight = false;
+            isDay = true;
+            dayNightController.UpdateSkyDay();
+            // nextWave = 0; //reset wave count
         }
     }
 
@@ -112,8 +116,8 @@ public class WaveSpawner : MonoBehaviour {
         waveCountdown = timeBetweenWaves;
 
         if(nextWave + 1 > waves.Length - 1) {
-            nextWave = 0;
-            Debug.Log("All waves complete! Looping. . .");
+            Debug.Log("Completed all waves");
+            player.BeatGame();
         } else {
             nextWave++;
             if(nextWave > highestWave)
@@ -141,7 +145,7 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        waveIndicator.SetActive(true);
+        player.waveIndicator.SetActive(true);
 
         valueText.text = "Wave: " + waveCount.ToString();
 
@@ -162,6 +166,7 @@ public class WaveSpawner : MonoBehaviour {
         enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
 
         state = SpawnState.WAITING;
+        player.waveIndicator.SetActive(false);
 
         yield break;
     }
@@ -194,4 +199,8 @@ public class WaveSpawner : MonoBehaviour {
             Gizmos.DrawWireSphere(spawnPoint.position, 1f);
         }
     }
+
+    // public void Destroy {
+    //     Destroy(gameObject);
+    // }
 }

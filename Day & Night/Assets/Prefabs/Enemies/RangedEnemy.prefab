@@ -442,6 +442,14 @@ MonoBehaviour:
     m_Bits: 128
   _attackTransform: {fileID: 3259649918514436280}
   animator: {fileID: 5825256786121129425}
+  hurtParticle: {fileID: 3360194316721812212, guid: 5f1aed5f28b174a439282d614dbaccd5,
+    type: 3}
+  dieParticle: {fileID: 3360194316721812212, guid: 5f1aed5f28b174a439282d614dbaccd5,
+    type: 3}
+  _orcAtt: {fileID: 8300000, guid: 2e8ceddccc052b94f814729487d0b4c5, type: 3}
+  _rangeAtt: {fileID: 8300000, guid: e2c6ba6677dfd1749800c1dc236454da, type: 3}
+  _orcDth: {fileID: 8300000, guid: 9515c26a61eb53d428cc5392490d753f, type: 3}
+  _rangeDth: {fileID: 8300000, guid: 1445ff1c534bcd641934cf71d2f84fbf, type: 3}
   enemyDead: 0
   meleePrefab: {fileID: 0}
   _projectilePrefab: {fileID: 1011306777333663748, guid: 694529d173b113f459393a04f8e2ecd2,
@@ -462,8 +470,6 @@ MonoBehaviour:
   _smoke: {fileID: 0}
   bossMeleePrefab: {fileID: 0}
   bossProjectilePrefab: {fileID: 0}
-  rangeDamage: 26
-  bossDamage: 10
 --- !u!114 &-1429768826371691664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +487,7 @@ MonoBehaviour:
   damage: 10
   attackSpeed: 1
   attackRange: 1
-  moveSpeed: 1
+  moveSpeed: 3
 --- !u!114 &3121318150285461066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,11 +671,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6568533373393775217, guid: bf79c8d7bc02c064db435cfffca815ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e4ff3936fa012f4ba625f7046c0590d, type: 2}
+    - target: {fileID: -5691511816734257662, guid: bf79c8d7bc02c064db435cfffca815ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e4ff3936fa012f4ba625f7046c0590d, type: 2}
+    - target: {fileID: 181415761706340290, guid: bf79c8d7bc02c064db435cfffca815ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e4ff3936fa012f4ba625f7046c0590d, type: 2}
     - target: {fileID: 919132149155446097, guid: bf79c8d7bc02c064db435cfffca815ad,
         type: 3}
       propertyPath: m_Name
       value: wraithFloat
       objectReference: {fileID: 0}
+    - target: {fileID: 4993030092798189556, guid: bf79c8d7bc02c064db435cfffca815ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7e4ff3936fa012f4ba625f7046c0590d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf79c8d7bc02c064db435cfffca815ad, type: 3}
 --- !u!4 &4922983949551438785 stripped

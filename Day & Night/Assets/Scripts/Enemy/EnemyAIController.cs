@@ -19,8 +19,11 @@ public class EnemyAIController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject hurtParticle;
+    [SerializeField] GameObject dieParticle;
 
     [Header("Audio")]
+    private AudioManager audioManager;
     [SerializeField] AudioClip _orcAtt;
     private AudioSource orcAttack;
     [SerializeField] AudioClip _rangeAtt;
@@ -69,14 +72,19 @@ public class EnemyAIController : MonoBehaviour
 
     // calls populate enemy if enemy enum is flying
     void Start() {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         //assign clips to AudioSources
+        // /*orcAttack = gameObject.AddComponent(AudioSource);
+        orcAttack = gameObject.AddComponent<AudioSource>();
         orcAttack.clip = _orcAtt;
+        rangeAttack = gameObject.AddComponent<AudioSource>();
         rangeAttack.clip = _rangeAtt;
+        orcDeath = gameObject.AddComponent<AudioSource>();
         orcDeath.clip = _orcDth;
+        rangeDeath = gameObject.AddComponent<AudioSource>();
         rangeDeath.clip = _rangeDth;
 
-
-        if(currentEnemy == Enemy.Flying) {
+        if (currentEnemy == Enemy.Flying) {
             PopulateFlyingArray();
         }
 
@@ -275,7 +283,7 @@ public class EnemyAIController : MonoBehaviour
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
             animator.SetBool("Attack",true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
 
             if(!enemyDead && meleePrefab != null) {
@@ -398,6 +406,7 @@ public class EnemyAIController : MonoBehaviour
     }
 
     public void enemyDamaged() {
+        Instantiate(hurtParticle, transform.position, Quaternion.identity);
         StartCoroutine(TakeDamage());
     }
     
@@ -423,6 +432,7 @@ public class EnemyAIController : MonoBehaviour
             // flyingDeath.Play();
         }
 
+        Instantiate(dieParticle, transform.position, Quaternion.identity);
         StartCoroutine(OnDeath());
     }
     
@@ -444,7 +454,7 @@ public class EnemyAIController : MonoBehaviour
 
         if(currentEnemy == Enemy.Flying)
             agent.speed = 9f;
-        
+
         //yield return new WaitForSeconds(0.1f);
         // animator.SetBool("Hit",false);
         takingdamage = false;
