@@ -46,6 +46,13 @@ public class PlayerController : MonoBehaviour {
     public bool isDay = true;
     public bool isNight = false;
 
+    WaveSpawner waveSpawner;
+    public WaveSpawner waveSpawnerPrefab;
+    public GameObject waveInfo;
+    public TMP_Text waveCount;
+    public TMP_Text enemiesLeft;
+    public GameObject waveIndicator;
+
     void Awake() {
         currHP = maxHP;
         playerHPBar = GameObject.Find("PlayerHPBar");
@@ -53,7 +60,7 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(teleportToDaySpawnCoroutine());
 
-        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        weaponManager = GameObject.Find("Weapon Manager").GetComponent<WeaponManager>();
         directionalLight = GameObject.Find("Directional Light");
         dayNightController = directionalLight.GetComponent<DayNightController>();
 
@@ -64,6 +71,10 @@ public class PlayerController : MonoBehaviour {
         // zoneAreaObj = GameObject.Find("ZoneArea");
         // zoneText = GameObject.Find("ZoneText").GetComponent<TMP_Text>();
         // zoneAnimator = GameObject.Find("ZoneText").GetComponent<Animator>();
+
+        waveSpawner = GameObject.Find("Wave System").GetComponent<WaveSpawner>();
+        waveInfo = GameObject.Find("WaveCount");
+        waveIndicator = GameObject.Find("WaveIndicator");
     }
 
     // Start is called before the first frame update
@@ -147,6 +158,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator TransitionToNight() {
+        waveInfo.SetActive(false);
         dayNightController.UpdateSkyNight();
         itemManager.spawn();
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
@@ -193,7 +205,10 @@ public class PlayerController : MonoBehaviour {
         isDay = true;
         isNight = false;
         StartCoroutine(TransitionToDay());
+        waveInfo.SetActive(true);
         //tell wave manager to start spawning enemies
+        Destroy(waveSpawner.gameObject);
+        waveSpawner = Instantiate(waveSpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void BeatGame() {
