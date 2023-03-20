@@ -11,12 +11,18 @@ public class FireballCaster : MonoBehaviour
     [SerializeField] float startTime = 0.05f;
     [SerializeField] float recoveryTime = 1f;
 
+    [SerializeField] AudioClip _castFireball;
+    private AudioSource castFire;
+
     bool canCast = true;
     Camera cam = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        castFire = gameObject.AddComponent<AudioSource>();
+        castFire.clip = _castFireball;
+
         cam = transform.parent.GetComponent<Camera>();
     }
 
@@ -53,6 +59,8 @@ public class FireballCaster : MonoBehaviour
             else
                 target = ray.GetPoint(100);
             Vector3 direction = target - firePoint.position;
+
+            castFire.Play();
 
             GameObject newBolt = Instantiate(fireball, firePoint.position, Quaternion.identity);
             newBolt.transform.forward = direction;

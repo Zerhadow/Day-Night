@@ -6,9 +6,16 @@ public class FireballExplosion : MonoBehaviour
 {
     [SerializeField] float lifeSpan = 5f;
 
+    [SerializeField] AudioClip _kaboom;
+    private AudioSource kaboom;
+
     // Start is called before the first frame update
     void Start()
     {
+        kaboom = gameObject.AddComponent<AudioSource>();
+        kaboom.clip = _kaboom;
+        kaboom.Play();
+
         StartCoroutine(killSelf());
     }
 

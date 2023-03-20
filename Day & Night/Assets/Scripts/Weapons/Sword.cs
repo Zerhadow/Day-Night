@@ -10,12 +10,16 @@ public class Sword : MonoBehaviour
     [SerializeField] float startTime = 0.1f;
     [SerializeField] float recoveryTime = 0.1f;
 
+    [SerializeField] AudioClip _swordSwing;
+    private AudioSource shwing;
+
     bool canSwing = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        shwing = gameObject.AddComponent<AudioSource>();
+        shwing.clip = _swordSwing;
     }
 
     // Update is called once per frame
@@ -44,6 +48,8 @@ public class Sword : MonoBehaviour
         }
         else
         {
+            shwing.Play();
+
             Instantiate(meleeProjectile, firePoint);
             yield return new WaitForSeconds(recoveryTime);
             canSwing = true;

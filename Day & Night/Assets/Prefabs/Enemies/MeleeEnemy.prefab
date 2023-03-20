@@ -360,7 +360,7 @@ MonoBehaviour:
   _orcAtt: {fileID: 8300000, guid: 2e8ceddccc052b94f814729487d0b4c5, type: 3}
   _rangeAtt: {fileID: 8300000, guid: e2c6ba6677dfd1749800c1dc236454da, type: 3}
   _orcDth: {fileID: 8300000, guid: 9515c26a61eb53d428cc5392490d753f, type: 3}
-  _rangeDth: {fileID: 0}
+  _rangeDth: {fileID: 8300000, guid: 1445ff1c534bcd641934cf71d2f84fbf, type: 3}
   enemyDead: 0
   meleePrefab: {fileID: 5866943589400996355}
   _projectilePrefab: {fileID: 0}
