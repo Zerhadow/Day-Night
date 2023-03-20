@@ -7,12 +7,12 @@ public class Movement : MonoBehaviour
     [SerializeField] PlayerCamera cam = null;
     [SerializeField] Transform groundCheck = null;
 
-    [SerializeField] float maxVelocity = 5f;
-    [SerializeField] float timeToMax = 0.25f;
+    [SerializeField] float maxVelocity = 16f;
+    [SerializeField] float timeToMax = 0.3f;
     [SerializeField] float jumpHeight = 1f;
     [SerializeField] float jumpDuration = 0.25f;
     [SerializeField] float airResistanceCoefficient = 0.5f;
-    [SerializeField] float velocityMargin = 0.01f;
+    [SerializeField] float velocityMargin = 0.4f;
 
     [SerializeField] AudioClip _playerWalk;
     private AudioSource playerWalk;

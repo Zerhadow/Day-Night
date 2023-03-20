@@ -80,7 +80,7 @@ MonoBehaviour:
   pellet: {fileID: 5601182266196853492, guid: 39c294085c45ccd47965b3a20b970a52, type: 3}
   firePoint: {fileID: 2215049834646045311}
   startTime: 0.05
-  recoveryTime: 1.5
+  recoveryTime: 5
   horizontalSpread: 10
   verticalSpread: 5
   numberOfPellets: 15

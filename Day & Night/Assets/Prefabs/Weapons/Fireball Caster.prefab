@@ -4960,5 +4960,5 @@ MonoBehaviour:
   loadedBall: {fileID: 5866131661663707636}
   firePoint: {fileID: 2075240267216910963}
   startTime: 0.05
-  recoveryTime: 1
+  recoveryTime: 8
   _castFireball: {fileID: 8300000, guid: baeca06c54047a3489b24cc6b2e3a97b, type: 3}

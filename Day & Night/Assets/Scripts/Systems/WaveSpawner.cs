@@ -149,8 +149,7 @@ public class WaveSpawner : MonoBehaviour {
 
         valueText.text = "Wave: " + waveCount.ToString();
 
-        if(nextWave != 0)
-            dayNightController.UpdateSkyNextWave();
+           dayNightController.UpdateSkyNextWave();
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {

@@ -60,22 +60,22 @@ public class DayNightController : MonoBehaviour
     void Update()
     {
         // Test Inputs:
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UpdateSkyNextWave();
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            UpdateSkyDay();
-        }
-        else if (Input.GetKeyDown(KeyCode.I))
-        {
-            UpdateSkyNight();
-        }
-        else if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpdateSkyEclipse();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    UpdateSkyNextWave();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    UpdateSkyDay();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    UpdateSkyNight();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    UpdateSkyEclipse();
+        //}
 
 
         if (timer < _transLength)
