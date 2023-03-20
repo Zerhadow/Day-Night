@@ -22,9 +22,11 @@ public class WaveSpawner : MonoBehaviour {
     public int highestWave = 0;
 
     public TMP_Text valueText;
+    public TMP_Text enemiesLeftText;
     public int waveCount;
-    Slider waveSlider;
     int totalEnemies;
+    GameObject waveIndicator;
+    GameObject waveInfo;
 
     public Transform[] spawnPoints;
 
@@ -42,16 +44,20 @@ public class WaveSpawner : MonoBehaviour {
 
     PlayerController player;
 
-    // DayNightController dayNightController;
+    GameObject directionalLight;
+    DayNightController dayNightController;
 
     void Awake() {
         waveCount = nextWave + 1;
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         valueText = GameObject.Find("WaveCountText").GetComponent<TMP_Text>();
+        enemiesLeftText = GameObject.Find("EnemiesLeftText").GetComponent<TMP_Text>();
         valueText.text = "Wave: " + waveCount.ToString();
-        waveSlider = GameObject.Find("WaveProgress").GetComponent<Slider>();
-        // dayNightController = GameObject.Find("DayNightController").GetComponent<DayNightController>();
+        waveIndicator = GameObject.Find("WaveIndicator"); 
+        directionalLight = GameObject.Find("Directional Light");
+        dayNightController = directionalLight.GetComponent<DayNightController>();
+        waveInfo = GameObject.Find("WaveCount");
     }
 
     void Start() {
@@ -59,7 +65,7 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("No spawn points referenced");
         }
 
-        // dayNightController.UpdateSkyDay();
+        dayNightController.UpdateSkyDay();
 
         waveCountdown = timeBetweenWaves;
     }
@@ -89,14 +95,22 @@ public class WaveSpawner : MonoBehaviour {
 
     void FixedUpdate() {
 
-        waveSlider.value = totalEnemies;
+        waveCount = nextWave + 1;
+        // Debug.Log("Enemies left: " + totalEnemies);
+        enemiesLeftText.text = "Enemies left: " + totalEnemies.ToString();
 
         if(player.playerDied) {
             isNight = true;
             isDay = false;
+            waveInfo.SetActive(false);
             despawnAllEnemies();
+            dayNightController.UpdateSkyNight();
+        } else {
+            isNight = false;
+            isDay = true;
+            waveInfo.SetActive(true);
+            dayNightController.UpdateSkyDay();
             nextWave = 0; //reset wave count
-            // dayNightController.UpdateSkyNight();
         }
     }
 
@@ -106,8 +120,8 @@ public class WaveSpawner : MonoBehaviour {
         waveCountdown = timeBetweenWaves;
 
         if(nextWave + 1 > waves.Length - 1) {
-            nextWave = 0;
-            Debug.Log("All waves complete! Looping. . .");
+            Debug.Log("Completed all waves");
+            player.BeatGame();
         } else {
             nextWave++;
             if(nextWave > highestWave)
@@ -135,8 +149,12 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        // if(nextWave != 0)
-            // dayNightController.UpdateSkySkyNextWave();
+        waveIndicator.SetActive(true);
+
+        valueText.text = "Wave: " + waveCount.ToString();
+
+        if(nextWave != 0)
+            dayNightController.UpdateSkyNextWave();
 
         if(wave.enemy.Length == wave.enemies.Length) {
             for(int i = 0; i < wave.enemy.Length; i++) {
@@ -149,15 +167,16 @@ public class WaveSpawner : MonoBehaviour {
             Debug.Log("Enemy and enemy count arrays are not the same length");
         }
 
-        waveSlider.maxValue = totalEnemies;
+        enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
 
         state = SpawnState.WAITING;
+        waveIndicator.SetActive(false);
 
         yield break;
     }
 
     void SpawnEnemy(Transform _enemy) {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
+        // Debug.Log("Spawning Enemy: " + _enemy.name);
 
         //spawn enemy; change from random
         Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -173,10 +192,8 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void GetTotalEnemies() {
-        // Debug.Log("Getting total enemies");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         totalEnemies = enemies.Length;
-        // Debug.Log("Total enemies: " + totalEnemies);
     }
 
     private void OnDrawGizmos() {

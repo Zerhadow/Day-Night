@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour {
     // [SerializeField] GameObject _particleCollide;
     GameObject player;
     PlayerController playerController;
+    public int rangeDamage;
     
     void Awake() {
         player = GameObject.Find("Player");
@@ -22,6 +23,10 @@ public class EnemyProjectile : MonoBehaviour {
     // Start is called before the first frame update
     void Update()
     {
+        if(transform.position.magnitude > 750.0f) {
+            Destroy(this.gameObject);
+        }
+
         transform.Translate(Vector3.forward*_projectileSpeed*Time.deltaTime);
     }
 
@@ -29,7 +34,7 @@ public class EnemyProjectile : MonoBehaviour {
         if(other.tag != "Enemy") {
             if(other.tag == "Player"){
                 // Debug.Log("Player takes damage");
-                playerController.TakeDamage(25); //range enemies do 10 damage
+                playerController.TakeDamage(rangeDamage); //range enemies do 10 damage
             }
             // Instantiate(_particleCollide,transform.position,Quaternion.identity);
             Destroy(this.gameObject);
