@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2926712113071129523}
   - component: {fileID: 3712779833082073024}
   - component: {fileID: 1073404164896950418}
-  - component: {fileID: 1496573494992137017}
+  - component: {fileID: 6766668082255424415}
   m_Layer: 0
-  m_Name: Hit_Blood
+  m_Name: Hit_Magic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,8 +223,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.48235294, g: 0, b: 0, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      minColor: {r: 0.36600223, g: 0, b: 0.4433962, a: 1}
+      maxColor: {r: 0.7075472, g: 0, b: 0.5844962, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1364,7 +1364,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 1}
         key1: {r: 1, g: 0, b: 0, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1372,7 +1372,7 @@ ParticleSystem:
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
-        ctime0: 19661
+        ctime0: 0
         ctime1: 65535
         ctime2: 0
         ctime3: 0
@@ -4871,7 +4871,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1496573494992137017
+--- !u!114 &6766668082255424415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
