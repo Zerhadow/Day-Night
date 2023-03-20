@@ -281,10 +281,11 @@ public class EnemyAIController : MonoBehaviour
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
             animator.SetBool("Attack",true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
 
             if(!enemyDead && meleePrefab != null) {
+                yield return new WaitForSeconds(1f);
                 meleePrefab.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 meleePrefab.SetActive(false);
@@ -318,8 +319,9 @@ public class EnemyAIController : MonoBehaviour
                     animator.Play("Attack");
                     yield return new WaitForSeconds(1f);
 
-                    if(!enemyDead)
+                    if(!enemyDead) {
                         Instantiate(_projectilePrefab,_shotpoint.transform.position,transform.rotation);
+                    }
 
                     rangeAttack.Play();
                 }
