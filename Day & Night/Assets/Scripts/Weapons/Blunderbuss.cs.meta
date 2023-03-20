@@ -3,7 +3,11 @@ guid: db54e33a18f7b2343b915e27b148b747
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pellet: {instanceID: 0}
+  - firePoint: {instanceID: 0}
+  - _blunderShot: {fileID: 8300000, guid: a020165b3069ec247a6345d6d4dc2368, type: 3}
+  - _blunderLoad: {fileID: 8300000, guid: a1f4b1df0652bb047a68dafa1de4b556, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

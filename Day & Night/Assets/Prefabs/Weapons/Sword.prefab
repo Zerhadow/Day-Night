@@ -52,6 +52,7 @@ MonoBehaviour:
   firePoint: {fileID: 3296888413799784669}
   startTime: 0.5
   recoveryTime: 0.5
+  _swordSwing: {fileID: 8300000, guid: 4308afae7283b6a448dfdee127b7e001, type: 3}
 --- !u!1 &6923393477751777766
 GameObject:
   m_ObjectHideFlags: 0

@@ -84,6 +84,8 @@ MonoBehaviour:
   horizontalSpread: 10
   verticalSpread: 5
   numberOfPellets: 15
+  _blunderShot: {fileID: 8300000, guid: a020165b3069ec247a6345d6d4dc2368, type: 3}
+  _blunderLoad: {fileID: 8300000, guid: a1f4b1df0652bb047a68dafa1de4b556, type: 3}
 --- !u!1 &5448641788179558442
 GameObject:
   m_ObjectHideFlags: 0

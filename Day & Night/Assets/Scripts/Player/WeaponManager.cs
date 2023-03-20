@@ -17,6 +17,12 @@ public class WeaponManager : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] float timeToSwitch = 0.05f;
 
+    [Header("AudioClips")]
+    [SerializeField] AudioClip _weaponSwitch;
+    private AudioSource weaponSwitch;
+    [SerializeField] AudioClip _weaponPickup;
+    private AudioSource weaponPickup;
+
     GameObject[] weapons = { null, null, null };
     GameObject fireBall = null;
     int weaponIndex = -1;
@@ -35,6 +41,11 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weaponSwitch = gameObject.AddComponent<AudioSource>();
+        weaponSwitch.clip = _weaponSwitch;
+        weaponPickup = gameObject.AddComponent<AudioSource>();
+        weaponPickup.clip = _weaponPickup;
+
         if (testBlunderbuss != null)
         {
             AddWeapon(testBlunderbuss, WeaponType.Blunderbuss);
@@ -85,6 +96,8 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator SwitchWeapons(int nextWeapon)
     {
+        weaponSwitch.Play();
+
         switching = true;
         weapons[weaponIndex].SetActive(false);
         weaponIndex = nextWeapon;
@@ -95,6 +108,8 @@ public class WeaponManager : MonoBehaviour
 
     public void AddWeapon(GameObject weaponPrefab, WeaponType type)
     {
+        weaponPickup.Play();
+
         GameObject weapon = Instantiate(weaponPrefab);
         weapon.transform.SetParent(cam.transform);
         weapon.transform.localPosition = Vector3.zero;
