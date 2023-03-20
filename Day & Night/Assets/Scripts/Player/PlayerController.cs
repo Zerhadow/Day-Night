@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour {
 
     public void NightPhase() {
         // Debug.Log("Night phase");
+        waveInfo.SetActive(false);
         StartCoroutine(TransitionToNight());
     }
 
