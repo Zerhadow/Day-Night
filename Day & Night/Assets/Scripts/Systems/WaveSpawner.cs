@@ -26,7 +26,6 @@ public class WaveSpawner : MonoBehaviour {
     public int waveCount;
     int totalEnemies;
     GameObject waveIndicator;
-    GameObject waveInfo;
 
     public Transform[] spawnPoints;
 
@@ -57,7 +56,6 @@ public class WaveSpawner : MonoBehaviour {
         waveIndicator = GameObject.Find("WaveIndicator"); 
         directionalLight = GameObject.Find("Directional Light");
         dayNightController = directionalLight.GetComponent<DayNightController>();
-        waveInfo = GameObject.Find("WaveCount");
     }
 
     void Start() {
@@ -102,15 +100,13 @@ public class WaveSpawner : MonoBehaviour {
         if(player.playerDied) {
             isNight = true;
             isDay = false;
-            waveInfo.SetActive(false);
             despawnAllEnemies();
             dayNightController.UpdateSkyNight();
         } else {
             isNight = false;
             isDay = true;
-            waveInfo.SetActive(true);
             dayNightController.UpdateSkyDay();
-            nextWave = 0; //reset wave count
+            // nextWave = 0; //reset wave count
         }
     }
 
@@ -149,7 +145,7 @@ public class WaveSpawner : MonoBehaviour {
         Debug.Log("Spawning Wave: " + wave.name);
         state = SpawnState.SPAWNING;
 
-        waveIndicator.SetActive(true);
+        player.waveIndicator.SetActive(true);
 
         valueText.text = "Wave: " + waveCount.ToString();
 
@@ -170,7 +166,7 @@ public class WaveSpawner : MonoBehaviour {
         enemiesLeftText.text = "Enemies Left: " + totalEnemies.ToString();
 
         state = SpawnState.WAITING;
-        waveIndicator.SetActive(false);
+        player.waveIndicator.SetActive(false);
 
         yield break;
     }
@@ -203,4 +199,8 @@ public class WaveSpawner : MonoBehaviour {
             Gizmos.DrawWireSphere(spawnPoint.position, 1f);
         }
     }
+
+    // public void Destroy {
+    //     Destroy(gameObject);
+    // }
 }

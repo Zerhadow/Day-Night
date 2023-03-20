@@ -470,6 +470,8 @@ MonoBehaviour:
   _smoke: {fileID: 0}
   bossMeleePrefab: {fileID: 0}
   bossProjectilePrefab: {fileID: 0}
+  rangeDamage: 26
+  bossDamage: 10
 --- !u!114 &-1429768826371691664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.225}
+  m_AnchoredPosition: {x: 0, y: 2.417}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4798038349559844935

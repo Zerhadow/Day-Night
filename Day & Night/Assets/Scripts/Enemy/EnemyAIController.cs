@@ -72,7 +72,9 @@ public class EnemyAIController : MonoBehaviour
 
     // calls populate enemy if enemy enum is flying
     void Start() {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         //assign clips to AudioSources
+        // /*orcAttack = gameObject.AddComponent(AudioSource);
         orcAttack = gameObject.AddComponent<AudioSource>();
         orcAttack.clip = _orcAtt;
         rangeAttack = gameObject.AddComponent<AudioSource>();

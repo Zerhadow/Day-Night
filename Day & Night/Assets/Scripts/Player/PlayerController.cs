@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour {
     GameObject directionalLight;
     DayNightController dayNightController;
 
-    [SerializeField] AudioClip _playerDmg;
-    private AudioSource playerDamage;
-    [SerializeField] AudioClip _playerDie;
-    private AudioSource playerDeath;
-
     public float maxHP = 100;
     public float currHP = 100;
     public float damage = 10;
+
+    [SerializeField] AudioClip _playerDmg; 
+    private AudioSource playerDamage; 
+    [SerializeField] AudioClip _playerDie; 
+    private AudioSource playerDeath;
 
     public HUDHealth healthBar;
     GameObject playerHPBar;
@@ -51,6 +51,13 @@ public class PlayerController : MonoBehaviour {
     public bool isDay = true;
     public bool isNight = false;
 
+    WaveSpawner waveSpawner;
+    public WaveSpawner waveSpawnerPrefab;
+    public GameObject waveInfo;
+    public TMP_Text waveCount;
+    public TMP_Text enemiesLeft;
+    public GameObject waveIndicator;
+
     void Awake() {
         currHP = maxHP;
         playerHPBar = GameObject.Find("PlayerHPBar");
@@ -58,7 +65,7 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(teleportToDaySpawnCoroutine());
 
-        weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        weaponManager = GameObject.Find("Weapon Manager").GetComponent<WeaponManager>();
         directionalLight = GameObject.Find("Directional Light");
         dayNightController = directionalLight.GetComponent<DayNightController>();
 
@@ -69,15 +76,18 @@ public class PlayerController : MonoBehaviour {
         // zoneAreaObj = GameObject.Find("ZoneArea");
         // zoneText = GameObject.Find("ZoneText").GetComponent<TMP_Text>();
         // zoneAnimator = GameObject.Find("ZoneText").GetComponent<Animator>();
+
+        waveSpawner = GameObject.Find("Wave System").GetComponent<WaveSpawner>();
+        waveInfo = GameObject.Find("WaveCount");
+        waveIndicator = GameObject.Find("WaveIndicator");
     }
 
     // Start is called before the first frame update
     void Start() {
-        playerDamage = gameObject.AddComponent<AudioSource>();
-        playerDamage.clip = _playerDmg;
-        playerDeath = gameObject.AddComponent<AudioSource>();
-        playerDeath.clip = _playerDie;
-
+        playerDamage = gameObject.AddComponent<AudioSource>(); 
+        playerDamage.clip = _playerDmg; 
+        playerDeath = gameObject.AddComponent<AudioSource>(); 
+        playerDeath.clip = _playerDie; 
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 1f));
     }
 
@@ -103,7 +113,7 @@ public class PlayerController : MonoBehaviour {
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currHP -= damage;
 
-        playerDamage.Play();
+        playerDamage.Play(); 
         healthBar.SetHealth(currHP);
 
         // Debug.Log(transform.name + " takes " + damage + " damage.");
@@ -115,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 
     void Die() {
         Debug.Log(transform.name + " fainted.");
-        playerDeath.Play();
+        playerDeath.Play(); 
         isDay = false;
         isNight = true;
         // Fade scene to black, then start night phase
@@ -159,6 +169,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator TransitionToNight() {
+        waveInfo.SetActive(false);
         dayNightController.UpdateSkyNight();
         itemManager.spawn();
         StartCoroutine(AudioManager.StartFade(dayTrack, 3f, 0f));
@@ -205,7 +216,10 @@ public class PlayerController : MonoBehaviour {
         isDay = true;
         isNight = false;
         StartCoroutine(TransitionToDay());
+        waveInfo.SetActive(true);
         //tell wave manager to start spawning enemies
+        Destroy(waveSpawner.gameObject);
+        waveSpawner = Instantiate(waveSpawnerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void BeatGame() {

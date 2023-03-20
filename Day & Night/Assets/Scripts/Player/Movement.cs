@@ -112,9 +112,9 @@ public class Movement : MonoBehaviour
                 velocity2 += velocity2.normalized * -currentAcc * Time.deltaTime;
         }
 
-        if (velocity2.magnitude!=0 && grounded)
-        {
-            playerWalk.Play();
+        if (velocity2.magnitude!=0 && grounded) 
+        { 
+            playerWalk.Play(); 
         }
 
         // Move the player
