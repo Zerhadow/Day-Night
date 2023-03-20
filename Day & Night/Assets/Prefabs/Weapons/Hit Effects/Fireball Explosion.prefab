@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeSpan: 1
+  _kaboom: {fileID: 8300000, guid: b54666eed51c8ea428bef6fa2e4acedf, type: 3}
 --- !u!54 &1277369666753008538
 Rigidbody:
   m_ObjectHideFlags: 0

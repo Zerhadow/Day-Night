@@ -180,3 +180,4 @@ MonoBehaviour:
   firePoint: {fileID: 2075240267216910963}
   startTime: 0.05
   recoveryTime: 1
+  _castFireball: {fileID: 8300000, guid: 7b3802f4e453d9e4c987584c7ba692bb, type: 3}
