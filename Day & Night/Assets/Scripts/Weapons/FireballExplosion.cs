@@ -34,7 +34,7 @@ public class FireballExplosion : MonoBehaviour
     {
         if(other.tag == "Enemy") {
             Debug.Log("Hit enemy");
-            other.GetComponent<EnemyController>().TakeDamage(10);
+            other.GetComponent<EnemyController>().TakeDamage(20);
         }
     }
 }

@@ -298,6 +298,12 @@ MonoBehaviour:
     m_Bits: 128
   _attackTransform: {fileID: 7261908484544811614}
   animator: {fileID: 0}
+  hurtParticle: {fileID: 0}
+  dieParticle: {fileID: 0}
+  _orcAtt: {fileID: 0}
+  _rangeAtt: {fileID: 0}
+  _orcDth: {fileID: 0}
+  _rangeDth: {fileID: 0}
   enemyDead: 0
   meleePrefab: {fileID: 0}
   _projectilePrefab: {fileID: 0}
@@ -657,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c056e92d01ef094ab91d55a308b86f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeDamage: 15
 --- !u!1 &9204483283006930792
 GameObject:
   m_ObjectHideFlags: 0

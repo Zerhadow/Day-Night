@@ -7055,6 +7055,11 @@ PrefabInstance:
       propertyPath: _playerWalk
       value: 
       objectReference: {fileID: 8300000, guid: 1ff57a8ba74d4fb42aeadb4c0e3cb5f8, type: 3}
+    - target: {fileID: 4177574506167264335, guid: c70021db6dbf55f40aa7ecf16645fb03,
+        type: 3}
+      propertyPath: velocityMargin
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4974213895861644480, guid: c70021db6dbf55f40aa7ecf16645fb03,
         type: 3}
       propertyPath: testBow
@@ -7064,7 +7069,8 @@ PrefabInstance:
         type: 3}
       propertyPath: testFireball
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5866131662950547890, guid: 28ae8941ba2394543b7662315d61901a,
+        type: 3}
     - target: {fileID: 4974213895861644480, guid: c70021db6dbf55f40aa7ecf16645fb03,
         type: 3}
       propertyPath: _weaponPickup
@@ -22154,7 +22160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 17.2, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &362354699
@@ -57611,7 +57617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192.75, y: 156}
+  m_AnchoredPosition: {x: -192.75, y: 138.4}
   m_SizeDelta: {x: 385.49, y: 75.4493}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041550745
@@ -76018,7 +76024,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390958231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0013054375, w: -0.99999917}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76026,11 +76032,11 @@ RectTransform:
   - {fileID: 1643167040}
   m_Father: {fileID: 1041550744}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.15}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.3435974, y: 3.6610003}
+  m_SizeDelta: {x: -197.2093, y: -6.399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1394368997
 PrefabInstance:
@@ -80780,8 +80786,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00008392334}
+  m_SizeDelta: {x: 0, y: 37.725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1478230653
 MonoBehaviour:
@@ -80796,15 +80802,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e8ec5feb6c176b945b09cfec49fa73a8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

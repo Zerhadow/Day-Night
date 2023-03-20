@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Title Menu.unity
     guid: 2abc026c47db2fe49838480ac7b1e3a7
   - enabled: 1
-    path: Assets/Scenes/whitebox_Skyler.unity
-    guid: 5cd3814d55fabc043b965c8e18d6168a
+    path: Assets/Scenes/Main Level.unity
+    guid: 05fb20147ea8d0340866fc8b4e1969bc
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: 8e7e9c67c761e424182224941379374a

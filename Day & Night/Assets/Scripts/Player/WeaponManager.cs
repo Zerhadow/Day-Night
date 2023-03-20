@@ -144,6 +144,5 @@ public class WeaponManager : MonoBehaviour
         foreach(GameObject weapon in weapons)
             Destroy(weapon);
 
-        Destroy(fireBall);
     }
 }

@@ -9,14 +9,15 @@ public class MainMenu : MonoBehaviour
     AudioSource titleSource;
 
     void Awake() {
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        
-        if (audioManager == null) {
-            Debug.LogError("No audio manager found in the scene.");
+        if(SceneManager.GetActiveScene().name == "Title Menu") {
+            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+            if (audioManager == null) {
+                Debug.LogError("No audio manager found in the scene.");
+            }
+            
+            titleSource = GameObject.Find("TitleTrack").GetComponent<AudioSource>();
+            StartCoroutine(AudioManager.StartFade(titleSource, 3f, 1f));
         }
-        
-        titleSource = GameObject.Find("TitleTrack").GetComponent<AudioSource>();
-        StartCoroutine(AudioManager.StartFade(titleSource, 3f, 1f));
     }
 
     public void PlayGame() {
