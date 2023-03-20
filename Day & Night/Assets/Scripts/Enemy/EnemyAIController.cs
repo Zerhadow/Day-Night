@@ -19,6 +19,8 @@ public class EnemyAIController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject hurtParticle;
+    [SerializeField] GameObject dieParticle;
 
     [Header("Audio")]
     private AudioManager audioManager;
@@ -77,7 +79,6 @@ public class EnemyAIController : MonoBehaviour
         rangeAttack.clip = _rangeAtt;
         orcDeath.clip = _orcDth;
         rangeDeath.clip = _rangeDth;*/
-
 
         if (currentEnemy == Enemy.Flying) {
             PopulateFlyingArray();
@@ -401,6 +402,7 @@ public class EnemyAIController : MonoBehaviour
     }
 
     public void enemyDamaged() {
+        Instantiate(hurtParticle, transform.position, Quaternion.identity);
         StartCoroutine(TakeDamage());
     }
     
@@ -426,6 +428,7 @@ public class EnemyAIController : MonoBehaviour
             // flyingDeath.Play();
         }
 
+        Instantiate(dieParticle, transform.position, Quaternion.identity);
         StartCoroutine(OnDeath());
     }
     
@@ -447,7 +450,7 @@ public class EnemyAIController : MonoBehaviour
 
         if(currentEnemy == Enemy.Flying)
             agent.speed = 9f;
-        
+
         //yield return new WaitForSeconds(0.1f);
         // animator.SetBool("Hit",false);
         takingdamage = false;
