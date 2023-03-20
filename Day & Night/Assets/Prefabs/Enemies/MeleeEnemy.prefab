@@ -417,7 +417,7 @@ MonoBehaviour:
   damage: 10
   attackSpeed: 2
   attackRange: 2
-  moveSpeed: 3
+  moveSpeed: 5
 --- !u!1 &7567928877358818372
 GameObject:
   m_ObjectHideFlags: 0

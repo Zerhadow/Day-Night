@@ -487,7 +487,7 @@ MonoBehaviour:
   damage: 10
   attackSpeed: 1
   attackRange: 1
-  moveSpeed: 2
+  moveSpeed: 3
 --- !u!114 &3121318150285461066
 MonoBehaviour:
   m_ObjectHideFlags: 0
