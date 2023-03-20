@@ -245,7 +245,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3182976514525673381
 MonoBehaviour:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c056e92d01ef094ab91d55a308b86f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamage: 50
+  meleeDamage: 15
 --- !u!1 &7261908484544811610
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

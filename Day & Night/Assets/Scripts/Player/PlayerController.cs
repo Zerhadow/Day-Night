@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour {
 
@@ -103,9 +105,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Heal(float health) {
+        Debug.Log("Is healing");
         if (health > 0) {
+            Debug.Log("Healed by " + health);
             currHP += health;
-            currHP = Mathf.Clamp(currHP, 0, maxHP);
+            if(currHP > maxHP)
+                currHP = maxHP;
+            healthBar.SetHealth(currHP);
+
         }
     }
 
@@ -224,7 +231,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void BeatGame() {
-        
+        SceneManager.LoadScene("End Scene");
     }
 
     void OnTriggerEnter(Collider other) {

@@ -52,7 +52,9 @@ MonoBehaviour:
   emptyCrossbow: {fileID: 5106280270423803902}
   firePoint: {fileID: 9004167564364633059}
   startTime: 0.05
-  recoveryTime: 1
+  recoveryTime: 4
+  _crossbow: {fileID: 0}
+  _loadBolt: {fileID: 0}
 --- !u!1 &5106280270423803902
 GameObject:
   m_ObjectHideFlags: 0
