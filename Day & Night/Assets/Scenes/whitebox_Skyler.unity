@@ -26242,7 +26242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &469766293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26304,7 +26304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'I should search for healing and weapons before I return to my cel
+  m_text: 'I should search for healing and weapons before I return to my cell
 
 '
   m_isRightToLeft: 0
@@ -26316,7 +26316,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 78643199
+    rgba: 4289724415
   m_fontColor: {r: 1, g: 1, b: 0.6862745, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
