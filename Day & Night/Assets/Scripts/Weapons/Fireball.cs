@@ -17,6 +17,11 @@ public class Fireball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(transform.position.magnitude > 750.0f) {
+            Destroy(this.gameObject);
+        }
+
         transform.position += transform.forward * velocity * Time.deltaTime;
     }
 

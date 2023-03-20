@@ -442,7 +442,16 @@ MonoBehaviour:
     m_Bits: 128
   _attackTransform: {fileID: 3259649918514436280}
   animator: {fileID: 5825256786121129425}
+  hurtParticle: {fileID: 3360194316721812212, guid: 5f1aed5f28b174a439282d614dbaccd5,
+    type: 3}
+  dieParticle: {fileID: 3360194316721812212, guid: 5f1aed5f28b174a439282d614dbaccd5,
+    type: 3}
+  _orcAtt: {fileID: 8300000, guid: 2e8ceddccc052b94f814729487d0b4c5, type: 3}
+  _rangeAtt: {fileID: 8300000, guid: e2c6ba6677dfd1749800c1dc236454da, type: 3}
+  _orcDth: {fileID: 8300000, guid: 9515c26a61eb53d428cc5392490d753f, type: 3}
+  _rangeDth: {fileID: 8300000, guid: 1445ff1c534bcd641934cf71d2f84fbf, type: 3}
   enemyDead: 0
+  meleePrefab: {fileID: 0}
   _projectilePrefab: {fileID: 1011306777333663748, guid: 694529d173b113f459393a04f8e2ecd2,
     type: 3}
   _shotpoint: {fileID: 3259649918514436258}
@@ -459,6 +468,10 @@ MonoBehaviour:
   - {fileID: 0}
   _projectileGravityPrefab: {fileID: 0}
   _smoke: {fileID: 0}
+  bossMeleePrefab: {fileID: 0}
+  bossProjectilePrefab: {fileID: 0}
+  rangeDamage: 26
+  bossDamage: 10
 --- !u!114 &-1429768826371691664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +489,7 @@ MonoBehaviour:
   damage: 10
   attackSpeed: 1
   attackRange: 1
-  moveSpeed: 1
+  moveSpeed: 2
 --- !u!114 &3121318150285461066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.225}
+  m_AnchoredPosition: {x: 0, y: 2.417}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4798038349559844935

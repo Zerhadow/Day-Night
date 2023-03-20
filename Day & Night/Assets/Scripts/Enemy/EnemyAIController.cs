@@ -19,14 +19,21 @@ public class EnemyAIController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject hurtParticle;
+    [SerializeField] GameObject dieParticle;
 
     [Header("Audio")]
-    // public AudioSource orcAttack;
-    // public AudioSource rangeAttack;
+    private AudioManager audioManager;
+    //[SerializeField] AudioClip _orcAtt;
+    //private AudioSource orcAttack;
+    //[SerializeField] AudioClip _rangeAtt;
+    //private AudioSource rangeAttack;
     // public AudioSource flyingAttack;
     // public AudioSource bossAttack;
-    // public AudioSource orcDeath;
-    // public AudioSource rangeDeath;
+    //[SerializeField] AudioClip _orcDth;
+    //private AudioSource orcDeath;
+    //[SerializeField] AudioClip _rangeDth;
+    //private AudioSource rangeDeath;
     // public AudioSource flyingDeath;
     // public AudioSource bossDeath;
 
@@ -65,7 +72,15 @@ public class EnemyAIController : MonoBehaviour
 
     // calls populate enemy if enemy enum is flying
     void Start() {
-        if(currentEnemy == Enemy.Flying) {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //assign clips to AudioSources
+        /*orcAttack = gameObject.AddComponent(AudioSource);
+        orcAttack.clip = _orcAtt;
+        rangeAttack.clip = _rangeAtt;
+        orcDeath.clip = _orcDth;
+        rangeDeath.clip = _rangeDth;*/
+
+        if (currentEnemy == Enemy.Flying) {
             PopulateFlyingArray();
         }
 
@@ -120,7 +135,7 @@ public class EnemyAIController : MonoBehaviour
                 LookAtPlayer();
             }
 
-            if(distance < 4.2f || !enemyDead) {
+            if(distance < 4.2f && !enemyDead) {
                 agent.isStopped = true;
                 //LookAtPlayer();
                 if(enemyDead == false) {
@@ -259,21 +274,22 @@ public class EnemyAIController : MonoBehaviour
         delay = true;
         yield return new WaitForSeconds(1f);
 
-        if(!takingdamage) {
+        if(!takingdamage && !enemyDead) {
             agent.isStopped = true;
             animator.SetBool("Walk",false);
             animator.SetBool("Idle",false);
             animator.SetBool("Attack",true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
 
             if(!enemyDead && meleePrefab != null) {
+                yield return new WaitForSeconds(1f);
                 meleePrefab.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
                 meleePrefab.SetActive(false);
             }
 
-            // orcAttack.Play();
+            audioManager.PlaySound("OrcAttack");
 
             yield return new WaitForSeconds(0.1f);
             animator.SetBool("Attack",false);
@@ -301,10 +317,11 @@ public class EnemyAIController : MonoBehaviour
                     animator.Play("Attack");
                     yield return new WaitForSeconds(1f);
 
-                    if(!enemyDead)
+                    if(!enemyDead) {
                         Instantiate(_projectilePrefab,_shotpoint.transform.position,transform.rotation);
+                    }
 
-                    // rangeAttack.Play();
+                    audioManager.PlaySound("RangeAttack");
                 }
 
                 yield return new WaitForSeconds(0.1f);
@@ -385,21 +402,23 @@ public class EnemyAIController : MonoBehaviour
     }
 
     public void enemyDamaged() {
+        Instantiate(hurtParticle, transform.position, Quaternion.identity);
         StartCoroutine(TakeDamage());
     }
     
     //playes corrresponding death animation and sound
     public void Death() {
+        // agent.isStopped = true;
         agent.updatePosition = false;
         enemyDead = true;
         agent.enabled = false;
         // animator.SetBool("Death",true);
 
         if(currentEnemy == Enemy.Melee) {
-            // orcDeath.Play();
+            audioManager.PlaySound("OrcDeath");
         }
         if(currentEnemy == Enemy.Ranged) {
-            // rangeDeath.Play();
+            audioManager.PlaySound("RangeDeath");
         }
         if(currentEnemy == Enemy.Boss) {
             // bossDeath.Play();
@@ -409,7 +428,7 @@ public class EnemyAIController : MonoBehaviour
             // flyingDeath.Play();
         }
 
-        // agent.isStopped = true;
+        Instantiate(dieParticle, transform.position, Quaternion.identity);
         StartCoroutine(OnDeath());
     }
     
@@ -431,7 +450,7 @@ public class EnemyAIController : MonoBehaviour
 
         if(currentEnemy == Enemy.Flying)
             agent.speed = 9f;
-        
+
         //yield return new WaitForSeconds(0.1f);
         // animator.SetBool("Hit",false);
         takingdamage = false;

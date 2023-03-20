@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour {
-    public static AudioManager instance;
+    public AudioManager instance;
     public AudioFile[] audioFiles;
 
     private float timeToReset;
@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour {
 
     }
 
-    public static void PlaySound(string name) {
+    public void PlaySound(string name) {
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
         if (s == null) {
             Debug.LogError("Sound name" + name + "not found!");
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    public static void StopSound(String name) {
+    public void StopSound(String name) {
         AudioFile s = Array.Find(instance.audioFiles, AudioFile => AudioFile.audioName == name);
 
         if (s == null) {

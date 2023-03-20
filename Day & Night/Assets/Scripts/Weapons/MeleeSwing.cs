@@ -6,6 +6,7 @@ public class MeleeSwing : MonoBehaviour
 {
     [SerializeField] GameObject hitEffect = null;
     [SerializeField] float lifeSpan = 0f;
+    [SerializeField] float damage = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class MeleeSwing : MonoBehaviour
     {
         if(other.tag == "Enemy") {
             Debug.Log("Hit enemy");
-            other.GetComponent<EnemyController>().TakeDamage(10);
+            other.GetComponent<EnemyController>().TakeDamage(damage);
         }
     }
 }
