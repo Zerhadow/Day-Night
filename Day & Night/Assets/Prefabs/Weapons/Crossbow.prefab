@@ -53,8 +53,6 @@ MonoBehaviour:
   firePoint: {fileID: 9004167564364633059}
   startTime: 0.05
   recoveryTime: 1
-  _crossbow: {fileID: 8300000, guid: e2ac588d7d65dd74ea0c3d8bb8e27416, type: 3}
-  _loadBolt: {fileID: 8300000, guid: d6cf8e9e075ae06499d12f28375a1d23, type: 3}
 --- !u!1 &5106280270423803902
 GameObject:
   m_ObjectHideFlags: 0

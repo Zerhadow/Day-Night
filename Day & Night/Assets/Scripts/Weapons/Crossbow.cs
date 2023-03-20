@@ -13,22 +13,12 @@ public class Crossbow : MonoBehaviour
     [SerializeField] float startTime = 0.05f;
     [SerializeField] float recoveryTime = 1f;
 
-    [SerializeField] AudioClip _crossbow;
-    private AudioSource thwap;
-    [SerializeField] AudioClip _loadBolt;
-    private AudioSource loadBolt;
-
     bool canShoot = true;
     Camera cam = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        thwap = gameObject.AddComponent<AudioSource>();
-        thwap.clip = _crossbow;
-        loadBolt = gameObject.AddComponent<AudioSource>();
-        loadBolt.clip = _loadBolt;
-
         cam = transform.parent.GetComponent<Camera>();
         fullCrossbow.SetActive(true);
         emptyCrossbow.SetActive(false);
@@ -56,7 +46,6 @@ public class Crossbow : MonoBehaviour
         if (!isActiveAndEnabled)
         {
             canShoot = true;
-            loadBolt.Play();
         }
         else
         {
@@ -69,8 +58,6 @@ public class Crossbow : MonoBehaviour
             else
                 target = ray.GetPoint(100);
             Vector3 direction = target - firePoint.position;
-
-            thwap.Play();
 
             GameObject newBolt = Instantiate(bolt, firePoint.position, Quaternion.identity);
             newBolt.transform.forward = direction;
